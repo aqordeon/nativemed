@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<CommonsDebugComp v-if="isDebug" />
-		<LayoutsNavBar />
+		<LayoutsNavbar />
 		<main class="">
 			<slot />
 		</main>

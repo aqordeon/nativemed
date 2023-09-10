@@ -12,6 +12,9 @@ export default defineNuxtConfig({
         '@models': resolve(__dirname, './models'),
     },
     css: ['~/assets/stylesheet/index.scss'],
+    modules: [
+        '@pinia/nuxt',
+    ],
     postcss: {
         plugins: {
             tailwindcss: {},
