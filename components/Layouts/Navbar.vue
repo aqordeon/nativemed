@@ -1,7 +1,6 @@
 <template>
 	<section class="w-screen">
 		<div class="bg-indigo-500 flex gap-x-2">
-			{{ authenticated }}
 			<NuxtLink to="/">Index</NuxtLink>
 			<NuxtLink v-if="!authenticated" to="/login">Login</NuxtLink>
 			<NuxtLink v-else @click="logout">Logout</NuxtLink>
@@ -11,7 +10,7 @@
 
 <script setup>
 import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
-import { useAuthStore } from "~/store/auth" // import the auth store we just created
+import { useAuthStore } from "~/store/authStore" // import the auth store we just created
 
 const router = useRouter()
 

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <NuxtLink href="/">Indexx</NuxtLink>
         <div class="title">
             <h2>Login</h2>
         </div>
@@ -17,26 +16,26 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
-import { useAuthStore } from '~/store/auth'; // import the auth store we just created
+import { storeToRefs } from 'pinia'
 
-const { authenticateUser } = useAuthStore(); // use authenticateUser action from  auth store
+import { useAuthStore } from '~/store/authStore'
+const { authenticateUser } = useAuthStore()
 
-const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
 const user = ref({
     username: 'kminchelle',
     password: '0lelplR',
 });
-const router = useRouter();
+const router = useRouter()
 
 const login = async () => {
-    await authenticateUser(user.value); // call authenticateUser and pass the user object
-    // redirect to homepage if user is authenticated
+    await authenticateUser(user.value) // call authenticateUser and pass the user object
+    // Redirect to if user already log in
     if (authenticated) {
-        router.push('/');
+        router.push('/')
     }
-};
+}
 </script>
 
 <style scoped></style>

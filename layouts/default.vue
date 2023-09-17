@@ -1,4 +1,5 @@
 <template>
+	<Title>Native Med</Title>
 	<div>
 		<CommonsDebugComp v-if="isDebug" />
 		<LayoutsNavbar />
