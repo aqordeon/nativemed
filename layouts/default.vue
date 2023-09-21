@@ -1,9 +1,9 @@
 <template>
 	<Title>Native Med</Title>
-	<div>
+	<div class="text-native-600">
 		<CommonsDebugComp v-if="isDebug" />
 		<LayoutsNavbar />
-		<main class="">
+		<main class="mt-24">
 			<slot />
 		</main>
 		<LayoutsFooterBar />
