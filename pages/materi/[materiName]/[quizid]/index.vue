@@ -1,7 +1,9 @@
 <template>
     <div class="w-full h-full bg-lime-400">
         This Quiz id: 
-        <pre>{{ $route.params.quizid }}</pre>
+        {{ $route.params.quizid }}
+        
+        <NuxtLink :to="`${$route.params.quizid}/tryout`">Click to start Tryout</NuxtLink>
     </div>
 </template>
 

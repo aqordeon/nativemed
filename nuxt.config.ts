@@ -11,6 +11,11 @@ export default defineNuxtConfig({
         '@factory': resolve(__dirname, './factory'),
         '@models': resolve(__dirname, './models'),
     },
+    app: {
+        head: {
+            link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+        }
+    },
     css: ['~/assets/stylesheet/index.scss'],
     modules: [
         '@pinia/nuxt',
