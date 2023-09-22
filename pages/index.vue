@@ -11,9 +11,9 @@
 				</div>
 			</div>
 			<div class="w-full relative pt-20 px-20 pb-0 h-fit">
-				<img src="@/assets/images/main 1.png" alt="" class="absolute z-20 -left-[46px] top-11 scale-[107%]">
+				<img src="@/assets/images/main1.png" alt="" class="absolute z-20 -left-[46px] top-11 scale-[107%]">
 				<img src="@/assets/images/book.png" alt="" class="absolute z-20 top-16 right-16 scale-75">
-				<img src="@/assets/images/book 1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-75">
+				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-75">
 				<div class="w-full aspect-square relative rounded-full overflow-hidden">
 					<img src="@/assets/images/main.png" alt="" class="absolute z-10">
 					<div class="absolute w-full h-full rounded-full bg-native-600"></div>
@@ -48,6 +48,22 @@
 			</div>
 		</section>
 
+		<!-- Top 10 Universitas Favorit -->
+		<section class="bg-white py-24 flex flex-row px-11 gap-x-8">
+			<div class="w-fit flex items-center">
+				<div class="border-l-8 border-native-600 px-4">
+					<p class="font-bold text-3xl whitespace-nowrap">Top 10 Universitas Favorit</p>
+					<p class="font-light text-2xl">Lulusan kami</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-5 w-full gap-5">
+				<div v-for="univ in universitas" :key="univ.name" class="flex items-center bg-white rounded-md shadow px-4 py-3 gap-x-2">
+					<img :src="univ.logo" :alt="univ.name" class="h-10 aspect-square">
+					<p class="flex items-center font-bold text-gray-700 leading-5">{{ univ.name }}</p>
+				</div>
+			</div>
+		</section>
+
 	</div>
 
 	<!-- <div class="bg-slate-100 flex w-screen h-screen items-center justify-center gap-x-4">
@@ -58,6 +74,48 @@
 </template>
 
 <script setup>
+const universitas = [
+	{
+		name: 'Universitas Indonesia',
+		logo: '/university/UnivUI.png'
+	},
+	{
+		name: 'Universitas Diponegoro',
+		logo: '/university/Univ Undip.png'
+	},
+	{
+		name: 'Universitas Brawijaya',
+		logo: '/university/Univ UB.png'
+	},
+	{
+		name: 'Universitas Gajah Mada',
+		logo: '/university/Univ UGM.png'
+	},
+	{
+		name: 'Universitas Airlangga',
+		logo: '/university/Univ Airlangga.png'
+	},
+	{
+		name: 'Universitas Padjajaran',
+		logo: '/university/Univ Unpad.png'
+	},
+	{
+		name: 'Universitas Hasanuddin',
+		logo: '/university/Univ Hasanuddin.png'
+	},
+	{
+		name: 'Universitas Udayana',
+		logo: '/university/Univ Udayana.png'
+	},
+	{
+		name: 'Institut Pertanian Bogor',
+		logo: '/university/Univ IPB.png'
+	},
+	{
+		name: 'Universitas Sebelas Maret',
+		logo: '/university/Univ UNS.png'
+	},
+]
 </script>
 
 <style>
