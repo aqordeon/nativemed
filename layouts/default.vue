@@ -3,7 +3,7 @@
 	<div class="text-native-600">
 		<CommonsDebugComp v-if="isDebug" />
 		<LayoutsNavbar />
-		<main class="mt-24">
+		<main class="">
 			<slot />
 		</main>
 		<LayoutsFooterBar />
