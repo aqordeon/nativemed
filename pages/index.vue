@@ -3,8 +3,8 @@
 		<!-- Section: hero -->
 		<section class="grid grid-cols-2 px-16 py-20 xl:py-24">
 			<div class="relative flex flex-col place-content-center items-start gap-y-4 lg:gap-y-2">
-				<div class="font-semibold text-2xl lg:text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</div>
-				<div class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</div>
+				<h1 class="font-semibold text-2xl lg:text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</h1>
+				<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
 				<div class="flex gap-x-3">
 					<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
 					<div class="bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
@@ -23,7 +23,7 @@
 
 		<!-- Section: Passing Grade -->
 		<section class="bg-native-600 w-full p-10 text-gray-50 text-center space-y-3">
-			<div class="font-semibold text-xl">Top 5 Passing Grade</div>
+			<h2 class="font-semibold text-xl">Top 5 Passing Grade</h2>
 			<div class="font-light">Berikut merupakan passing grade program studi Kedokteran dari beberapa lulusan kami.</div>
 			
 			<!-- Passing Grade: box -->
@@ -40,7 +40,7 @@
 			<!-- Title -->
 			<div class="lg:w-fit flex items-center justify-center lg:justify-start">
 				<div class="text-center lg:text-left lg:border-l-4 xl:border-l-8 border-native-600 px-4">
-					<p class="font-bold text-xl xl:text-3xl xl:whitespace-nowrap">Top 10 Universitas Favorit</p>
+					<h2 class="font-bold text-xl xl:text-3xl xl:whitespace-nowrap">Top 10 Universitas Favorit</h2>
 					<p class="font-light text-lg xl:text-2xl">Lulusan kami</p>
 				</div>
 			</div>
