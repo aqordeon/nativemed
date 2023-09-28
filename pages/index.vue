@@ -1,13 +1,15 @@
 <template>
 	<div>
 		<!-- Section: hero -->
-		<section class="grid grid-cols-2 px-16 py-20 xl:py-24">
-			<div class="relative flex flex-col place-content-center items-start gap-y-4 lg:gap-y-2">
-				<h1 class="font-semibold text-2xl lg:text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</h1>
-				<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
-				<div class="flex gap-x-3">
-					<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
-					<div class="bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
+		<section class="grid grid-cols-2 px-16 py-20 xl:pt-8 xl:pb-18">
+			<div class="relative flex flex-col place-content-center pt-14">
+				<div class="max-w-lg flex flex-col items-start gap-y-4 lg:gap-y-8 ">
+					<h1 class="font-semibold text-2xl lg:text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</h1>
+					<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
+					<div class="flex gap-x-3 items-center">
+						<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
+						<div class="bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
+					</div>
 				</div>
 			</div>
 			<div class="group w-full relative xl:pt-20 px-20 pb-0 h-fit">
@@ -16,7 +18,7 @@
 				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-50 xl:scale-75">
 				<div class="w-full aspect-square relative rounded-full overflow-hidden">
 					<img src="@/assets/images/main.png" alt="" class="absolute z-10">
-					<div class="absolute w-full h-full rounded-full bg-native-600 group-hover:bg-native-400"></div>
+					<div class="absolute w-full h-full rounded-full bg-native-400 group-hover:bg-native-500"></div>
 				</div>
 			</div>
 		</section>
@@ -38,9 +40,9 @@
 		<!-- Top 10 Universitas Favorit -->
 		<section class="bg-white py-8 lg:py-16 xl:py-24 flex flex-col lg:flex-row px-6 xl:px-11 gap-x-4 xl:gap-x-8 gap-y-3 lg:gap-y-0">
 			<!-- Title -->
-			<div class="lg:w-fit flex items-center justify-center lg:justify-start">
-				<div class="text-center lg:text-left lg:border-l-4 xl:border-l-8 border-native-600 px-4">
-					<h2 class="font-bold text-xl xl:text-3xl xl:whitespace-nowrap">Top 10 Universitas Favorit</h2>
+			<div class="lg:w-fit flex items-center justify-center lg:justify-start ">
+				<div class="text-center lg:text-left lg:border-l-4 xl:border-l-8 border-native-600 px-4 space-y-2 w-min">
+					<h2 class="font-bold text-xl xl:text-3xl">Top 10 Universitas Favorit</h2>
 					<p class="font-light text-lg xl:text-2xl">Lulusan kami</p>
 				</div>
 			</div>
