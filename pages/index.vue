@@ -2,21 +2,21 @@
 	<div>
 		<!-- Section: hero -->
 		<section class="grid grid-cols-2 px-16 py-20 xl:py-24">
-			<div class="relative flex flex-col place-content-center items-start gap-y-2">
-				<div class="font-semibold text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</div>
-				<div class="font-light">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</div>
+			<div class="relative flex flex-col place-content-center items-start gap-y-4 lg:gap-y-2">
+				<div class="font-semibold text-2xl lg:text-4xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</div>
+				<div class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</div>
 				<div class="flex gap-x-3">
-					<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2">
+					<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
 					<div class="bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
 				</div>
 			</div>
-			<div class="w-full relative pt-20 px-20 pb-0 h-fit">
-				<img src="@/assets/images/main1.png" alt="" class="absolute z-20 -left-[34px] xl:-left-[46px] top-[46px] xl:top-11 scale-[98%] xl:scale-[107%]">
-				<img src="@/assets/images/book.png" alt="" class="absolute z-20 top-16 right-16 scale-75">
-				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-75">
+			<div class="group w-full relative xl:pt-20 px-20 pb-0 h-fit">
+				<!-- <img src="@/assets/images/main1.png" alt="" class="absolute z-20 -left-[34px] xl:-left-[46px] top-[46px] xl:top-11 scale-[98%] xl:scale-[107%]"> -->
+				<img src="@/assets/images/book.png" alt="" class="absolute z-20 -top-12 xl:top-16 right-16 scale-50 xl:scale-75">
+				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-50 xl:scale-75">
 				<div class="w-full aspect-square relative rounded-full overflow-hidden">
 					<img src="@/assets/images/main.png" alt="" class="absolute z-10">
-					<div class="absolute w-full h-full rounded-full bg-native-600"></div>
+					<div class="absolute w-full h-full rounded-full bg-native-600 group-hover:bg-native-400"></div>
 				</div>
 			</div>
 		</section>
@@ -25,42 +25,31 @@
 		<section class="bg-native-600 w-full p-10 text-gray-50 text-center space-y-3">
 			<div class="font-semibold text-xl">Top 5 Passing Grade</div>
 			<div class="font-light">Berikut merupakan passing grade program studi Kedokteran dari beberapa lulusan kami.</div>
+			
+			<!-- Passing Grade: box -->
 			<div class="grid grid-cols-5 gap-x-2 place-content-center">
-				<div class="px-8 py-5 text-center space-y-4 bg-native-400 rounded-md">
-					<p class="font-semibold text-xl">80%</p>
-					<span class="font-light">Kedokteran UNDIP</span>
-				</div>
-				<div class="px-8 py-5 text-center space-y-4 bg-native-400 rounded-md">
-					<p class="font-semibold text-xl">70.80%</p>
-					<span class="font-light">Kedokteran UGM</span>
-				</div>
-				<div class="px-8 py-5 text-center space-y-4 bg-native-400 rounded-md">
-					<p class="font-semibold text-xl">60.50%</p>
-					<span class="font-light">Kedokteran ITB</span>
-				</div>
-				<div class="px-8 py-5 text-center space-y-4 bg-native-400 rounded-md">
-					<p class="font-semibold text-xl">59.60%</p>
-					<span class="font-light">Kedokteran UI</span>
-				</div>
-				<div class="px-8 py-5 text-center space-y-4 bg-native-400 rounded-md">
-					<p class="font-semibold text-xl">55.90%</p>
-					<span class="font-light">Kedokteran UB</span>
+				<div v-for="(passing, index) in passingGrade" :key="index" class="px-8 py-5 text-center space-y-4 bg-native-400 hover:bg-native-500 rounded-md cursor-default border-2 border-transparent hover:border-native-400">
+					<p class="font-semibold text-xl">{{ passing.grade }}</p>
+					<span class="font-light">{{ passing.jurusan }}</span>
 				</div>
 			</div>
 		</section>
 
 		<!-- Top 10 Universitas Favorit -->
-		<section class="bg-white py-16 xl:py-24 flex flex-row px-6 xl:px-11 gap-x-4 xl:gap-x-8">
-			<div class="w-fit flex items-center">
-				<div class="border-l-4 xl:border-l-8 border-native-600 px-4">
+		<section class="bg-white py-8 lg:py-16 xl:py-24 flex flex-col lg:flex-row px-6 xl:px-11 gap-x-4 xl:gap-x-8 gap-y-3 lg:gap-y-0">
+			<!-- Title -->
+			<div class="lg:w-fit flex items-center justify-center lg:justify-start">
+				<div class="text-center lg:text-left lg:border-l-4 xl:border-l-8 border-native-600 px-4">
 					<p class="font-bold text-xl xl:text-3xl xl:whitespace-nowrap">Top 10 Universitas Favorit</p>
 					<p class="font-light text-lg xl:text-2xl">Lulusan kami</p>
 				</div>
 			</div>
-			<div class="grid grid-cols-5 grid-rows-2 w-full gap-5">
-				<div v-for="univ in universitas" :key="univ.name" class="flex items-center bg-white rounded-md shadow px-3 xl:px-4 py-2 xl:py-3 gap-x-2">
+
+			<!-- List University -->
+			<div class="grid grid-cols-5 grid-rows-2 w-full gap-3 lg:gap-5 min-w-fit lg:min-w-0">
+				<div v-for="univ in universitas" :key="univ.name" class="flex items-center bg-white hover:bg-native-50 rounded-md shadow px-2 xl:px-4 py-2 xl:py-3 gap-x-2 cursor-default border-2 border-transparent hover:border-native-400">
 					<img :src="univ.logo" :alt="univ.name" class="h-10 aspect-square">
-					<p class="flex items-center text-sm xl:text-base font-bold text-gray-700 leading-4 xl:leading-5">{{ univ.name }}</p>
+					<p class="flex items-center text-sm xl:text-base font-bold text-native-600 leading-4 xl:leading-5">{{ univ.name }}</p>
 				</div>
 			</div>
 		</section>
@@ -117,7 +106,27 @@ const universitas = [
 		logo: '/university/Univ UNS.png'
 	},
 ]
-</script>
 
-<style>
-</style>
+const passingGrade = [
+	{
+		grade: '80%',
+		jurusan: 'Kedokteran UNDIP'
+	},
+	{
+		grade: '70.80%',
+		jurusan: 'Kedokteran UGM'
+	},
+	{
+		grade: '60.50%',
+		jurusan: 'Kedokteran ITB'
+	},
+	{
+		grade: '59.60%',
+		jurusan: 'Kedokteran UI'
+	},
+	{
+		grade: '55.90%',
+		jurusan: 'Kedokteran UB'
+	},
+]
+</script>

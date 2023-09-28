@@ -4,24 +4,24 @@
             <img src="@/assets/images/native.png" alt="" class="w-32 aspect-square">
         </div>
         <div class="flex gap-x-24 xl:gap-x-52">
-            <div class="flex flex-col gap-y-5 xl:gap-y-9">
+            <div class="flex flex-col gap-y-5 xl:gap-y-9 justify-between">
                 <div class="space-y-2.5">
                     <p class="font-bold">info@nativemed.id</p>
-                    <p class="font-light flex flex-col">
+                    <!-- <p class="font-light flex flex-col">
                         <span>Lorem ipsum dolor sit amet consectetur</span>
                         <span>velit nisi quod itaque praesentium soluta</span>
                         <span>consectetur expedita eveniet sint!</span>
                         <span>12345</span>
-                    </p>
+                    </p> -->
                 </div>
-                <p class="text-sm">&copy; 2020 <span class="font-semibold">Native Satria Indonesia</span> All Right Reserved.</p>
+                <p class="text-sm">&copy; 2023 <span class="font-semibold">Native Satria Indonesia</span> All Right Reserved.</p>
             </div>
             <div>
                 <p class="font-bold">Perusahaan</p>
                 <p class="font-light flex flex-col">
-                    <span>Tentang Kami</span>
-                    <span>FAQ</span>
-                    <span class="whitespace-nowrap">Masukkan untuk produk</span>
+                    <NuxtLink class="hover:underline" to="/aboutus">Tentang Kami</NuxtLink>
+                    <NuxtLink class="hover:underline" to="/faq">FAQ</NuxtLink>
+                    <!-- <NuxtLink to="#" class="whitespace-nowrap">Masukkan untuk produk</NuxtLink> -->
                 </p>
             </div>
             <div>
