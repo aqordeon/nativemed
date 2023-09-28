@@ -1,7 +1,7 @@
 <template>
     <section class="bg-native-100 pl-12 py-9 flex gap-x-12 xl:gap-x-20">
         <div class="flex items-center">
-            <img src="@/assets/images/native.png" alt="" class="w-32 aspect-square">
+            <img src="@imgs/Native.png" alt="Native logo" class="w-32 aspect-square">
         </div>
         <div class="flex gap-x-24 xl:gap-x-52">
             <div class="flex flex-col gap-y-5 xl:gap-y-9 justify-between">
