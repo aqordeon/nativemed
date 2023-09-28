@@ -1,14 +1,14 @@
 <template>
-	<section class="w-screen flex bg-native-50 justify-between items-center py-3 px-4 lg:px-6">
+	<section class="w-screen flex justify-between items-center py-3 px-4 lg:px-6">
 			<div class="flex items-center cursor-pointer">
 				<img src="@/assets/images/Native.png" alt="" class="w-10 lg:w-14">
-				<span class="lg:text-xl xl:text-2xl font-bold uppercase text-native-600">Native Satria Nusantara</span>
+				<span class="lg:text-xl xl:text-2xl font-bold uppercase text-[#5271a8]">Native Satria Nusantara</span>
 			</div>
 
 			<!-- Navbar: Menu -->
 			<div class="grid grid-cols-3 justify-between gap-x-5 lg:gap-x-8 xl:gap-x-11 place-content-center">
 				<NuxtLink :to="navbar.url" v-for="(navbar, index) in navbarList" :key="index" class="group relative text-center font-medium">
-					<p class="px-2 lg:px-4">{{ navbar.name }}</p>
+					<p class="px-2 lg:px-4" :class="[route.path.includes(navbar.url.slice(0, -1).toLowerCase()) ? 'text-native-600' : 'text-native-300 hover:text-native-500']">{{ navbar.name }}</p>
 					<div :class="[route.path.includes(navbar.url.slice(0, -1).toLowerCase()) ? 'bg-native-600 w-full left-0' : 'bg-native-300 w-0 left-1/2 group-hover:w-1/2 group-hover:left-[25%]']" class="absolute -bottom-2 h-0.5 rounded-full transition-all duration-200 ease-in-out" />
 				</NuxtLink>
 			</div>
@@ -50,7 +50,7 @@ const navbarList = [
 		url: '/'
 	},
 	{
-		name: 'About Us',
+		name: 'Tentang Kami',
 		url: '/aboutus'
 	},
 	{

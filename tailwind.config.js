@@ -14,8 +14,8 @@ module.exports = {
             center: true,
         },
         extend: {
-            fontSize: {
-                xxs: '0.7rem',
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             },
             colors: {
                 'zeus': {
@@ -39,6 +39,9 @@ module.exports = {
                     500: 'rgb(99 102 241)',
                     600: 'rgb(79 70 229)',
                 }
+            },
+            fontSize: {
+                xxs: '0.7rem',
             },
             keyframes: {
                 "shimmer": {

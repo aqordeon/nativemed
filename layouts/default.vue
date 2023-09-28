@@ -1,8 +1,8 @@
 <template>
 	<Title>Native Med</Title>
-	<div class="text-native-600">
+	<div class="text-native-600 overflow-hidden">
 		<CommonsDebugComp v-if="isDebug" />
-		<LayoutsNavbar />
+		<LayoutsNavbar class="relative z-10" />
 		<main class="">
 			<slot />
 		</main>
