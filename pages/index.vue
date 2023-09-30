@@ -1,25 +1,25 @@
 <template>
 	<div>
 		<!-- Section: hero -->
-		<section class="isolate relative z-10 grid grid-cols-2 px-16 py-20 xl:pt-8 xl:pb-18">
+		<section class="isolate relative z-10 md:grid grid-cols-2 px-5 md:px-16 py-10 pb-12 md:pt-20 md:pb-20 xl:pt-8 xl:pb-18">
 			<!-- Hero: Background -->
 			<div class="absolute top-0 right-0 translate-x-1/2 z-10 w-[100px] aspect-square bg-indigo-500 blur-3xl"></div>
 			<div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/4 z-10 w-[200px] aspect-square bg-native-500/30 rounded-full blur-2xl"></div>
 			
 			<!-- Hero: Title -->
 			<div class="z-20 relative flex flex-col place-content-center">
-				<div class="max-w-lg flex flex-col items-start gap-y-4 lg:gap-y-8 ">
+				<div class="text-center md:text-left md:max-w-lg flex flex-col items-start gap-y-8 md:gap-y-4 lg:gap-y-8 ">
 					<h1 class="font-semibold text-2xl lg:text-3xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</h1>
 					<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
-					<div class="flex gap-x-3 items-center w-[90%]">
-						<input placeholder="Masukkan e-mailmu" class="w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
-						<div class="bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
+					<div class="mx-auto flex flex-col md:flex-row gap-y-3 gap-x-3 items-center w-full md:w-[90%]">
+						<input placeholder="Masukkan e-mailmu" class="text-center w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
+						<div class="w-full md:w-fit bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Hero: Image -->
-			<div class="group w-full relative xl:pt-20 px-20 pb-0 h-fit">
+			<div class="hidden md:block group w-full relative xl:pt-20 px-20 pb-0 h-fit">
 				<!-- <img src="@/assets/images/main1.png" alt="" class="absolute z-20 -left-[34px] xl:-left-[46px] top-[46px] xl:top-11 scale-[98%] xl:scale-[107%]"> -->
 				<img src="@/assets/images/book.png" alt="" class="absolute z-20 -top-12 xl:top-16 right-16 scale-50 xl:scale-75">
 				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-50 xl:scale-75 anim-move ">
@@ -31,15 +31,15 @@
 		</section>
 
 		<!-- Section: Passing Grade -->
-		<section class="relative z-20 bg-native-600 w-full p-10 text-gray-50 text-center space-y-7">
+		<section class="relative z-20 bg-native-600 w-full p-16 text-gray-50 text-center space-y-7">
 			<div class="space-y-3">
 				<h2 class="font-semibold text-2xl">Top 5 Passing Grade</h2>
 				<div class="font-light text-xl">Berikut merupakan passing grade program studi Kedokteran dari beberapa lulusan kami.</div>
 			</div>
 			
 			<!-- Passing Grade: box -->
-			<div class="grid grid-cols-5 gap-x-2 place-content-center w-fit mx-auto">
-				<div v-for="(passing, index) in passingGrade" :key="index" class="px-8 py-5 text-center space-y-4 bg-native-400 hover:bg-native-500 rounded-md cursor-default border-2 border-transparent hover:border-native-400">
+			<div class="flex flex-col md:grid grid-cols-5 gap-y-2 md:gap-y-0 gap-x-2 place-content-center w-full md:w-fit mx-auto">
+				<div v-for="(passing, index) in passingGrade" :key="index" class="w-full md:px-8 py-4 md:py-5 text-center space-y-2 md:space-y-4 bg-native-400 hover:bg-native-500 rounded-md cursor-default border-2 border-transparent hover:border-native-400">
 					<p class="font-semibold text-2xl leading-none">{{ passing.grade }}</p>
 					<p class="font-light leading-none">{{ passing.jurusan }}</p>
 				</div>
@@ -47,7 +47,7 @@
 		</section>
 
 		<!-- Top 10 Universitas Favorit -->
-		<section class="bg-white py-8 lg:py-16 xl:py-24 flex flex-col lg:flex-row px-6 xl:px-11 gap-x-4 xl:gap-x-16 gap-y-3 lg:gap-y-0">
+		<section class="bg-white py-12 md:py-8 lg:py-16 xl:py-24 flex flex-col lg:flex-row px-6 xl:px-11 gap-x-4 xl:gap-x-16 gap-y-3 lg:gap-y-0">
 			<!-- Title -->
 			<div class="lg:w-fit flex items-center justify-center lg:justify-start ">
 				<div class="text-center lg:text-left lg:border-l-4 xl:border-l-8 border-native-600 px-4 space-y-0 lg:space-y-2 w-min">
@@ -57,7 +57,7 @@
 			</div>
 
 			<!-- List University -->
-			<div class="grid grid-cols-5 grid-rows-2 w-full gap-3 lg:gap-5 min-w-fit lg:min-w-0">
+			<div class="grid grid-cols-2 md:grid-cols-5 grid-rows-2 w-full gap-3 lg:gap-5 min-w-fit lg:min-w-0">
 				<div v-for="univ in universitas" :key="univ.name" class="flex items-center bg-white hover:bg-native-50 rounded-md shadow px-2 xl:px-4 py-2 xl:py-3 gap-x-3 xl:gap-x-4 cursor-default border-2 border-transparent hover:border-native-400">
 					<img :src="univ.logo" :alt="univ.name" class="h-10 aspect-square">
 					<p class="flex items-center text-sm xl:text-base font-bold text-native-600 leading-4 xl:leading-5">{{ univ.name }}</p>
