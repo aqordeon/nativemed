@@ -1,5 +1,5 @@
 <template>
-	<section class="w-screen flex justify-between items-center py-3 px-4 lg:px-6">
+	<section class="bg-native-50 md:bg-transparent w-screen flex justify-between items-center py-3 px-4 lg:px-6">
 		<div class="flex items-center cursor-pointer">
 			<img src="@/assets/images/Native.png" alt="" class="w-10 lg:w-14">
 			<span class="lg:text-xl xl:text-2xl font-bold uppercase text-[#5271a8]">Native Satria Nusantara</span>
@@ -30,8 +30,10 @@
 		<!-- Hamburger -->
 		<div class="md:hidden">
 			<div class="bg-native-200 px-3 py-1 cursor-pointer" @click="isHamburgerOpen = !isHamburgerOpen">+</div>
-			<div v-if="isHamburgerOpen" class="z-30 bg-white/70 left-0 bottom-0 fixed w-full h-[93%]" />
-			<div class="z-40 fixed bottom-0 bg-red-500 h-[93%] w-4/6 transition-all duration-200 ease-in-out" :class="[isHamburgerOpen ? 'right-0' : '-right-full']">
+			<Transition >
+				<div v-if="isHamburgerOpen" class="z-30 bg-white/70 left-0 bottom-0 fixed w-full h-[93%]" />
+			</Transition>
+			<div class="z-40 fixed bottom-0 bg-native-600 h-[93%] w-4/6 transition-all duration-200 ease-in-out" :class="[isHamburgerOpen ? 'right-0' : '-right-full']">
 
 			</div>
 
@@ -77,3 +79,16 @@ const navbarList = [
 ]
 
 </script>
+
+<style>
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
