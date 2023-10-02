@@ -19,8 +19,8 @@
             <div class="hidden md:block">
                 <p class="font-bold">Perusahaan</p>
                 <p class="font-light flex flex-col">
-                    <NuxtLink class="hover:underline" to="/aboutus">Tentang Kami</NuxtLink>
-                    <NuxtLink class="hover:underline" to="/faq">FAQ</NuxtLink>
+                    <NuxtLink class="hover:underline" to="#">Tentang Kami</NuxtLink>
+                    <NuxtLink class="hover:underline" to="#">FAQ</NuxtLink>
                     <!-- <NuxtLink to="#" class="whitespace-nowrap">Masukkan untuk produk</NuxtLink> -->
                 </p>
             </div>

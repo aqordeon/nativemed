@@ -11,7 +11,7 @@
 				<div class="text-center md:text-left md:max-w-lg flex flex-col items-start gap-y-8 md:gap-y-4 lg:gap-y-8 ">
 					<h1 class="font-semibold text-2xl lg:text-3xl">Belajar dengan seru dan menyenangkan, siap menghadapi UTBK 2024 bersama kami!</h1>
 					<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
-					<div class="mx-auto flex flex-col md:flex-row gap-y-3 gap-x-3 items-center w-full md:w-[90%]">
+					<div class="mx-auto md:mx-0 flex flex-col md:flex-row gap-y-3 gap-x-3 items-center w-full md:w-[90%]">
 						<input placeholder="Masukkan e-mailmu" class="text-center w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
 						<div class="w-full md:w-fit bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
 					</div>

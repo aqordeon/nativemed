@@ -19,12 +19,12 @@
 
 		<!-- Navbar: Register/Sign in -->
 		<div class="hidden md:flex gap-x-3 lg:gap-x-6">
-			<NuxtLink to="/register" class="group relative flex px-2 items-center cursor-pointer">
+			<NuxtLink to="#" class="group relative flex px-2 items-center cursor-pointer">
 				<p>Register</p>
 				<div :class="[route.path.includes('/register') ? 'bg-native-600 w-full left-0' : 'bg-native-300 w-0 left-1/2 group-hover:w-1/2 group-hover:left-[25%]']"
 					class="absolute -bottom-0 h-0.5 bg-native-600 rounded-full transition-all duration-200 ease-in-out" />
 			</NuxtLink>
-			<div class="px-3 py-2.5 rounded-md bg-native-600 text-white cursor-pointer hover:bg-native-500">Sign in</div>
+			<NuxtLink to="/login" class="px-3 py-2.5 rounded-md bg-native-600 text-white cursor-pointer hover:bg-native-500">Sign in</NuxtLink>
 		</div>
 		
 		<!-- Hamburger -->
@@ -70,7 +70,7 @@ const navbarList = [
 	},
 	{
 		name: 'Tentang Kami',
-		url: '/aboutus'
+		url: '/tentangkami'
 	},
 	{
 		name: 'FAQ',
