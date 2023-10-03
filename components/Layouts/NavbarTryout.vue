@@ -1,5 +1,5 @@
 <template>
-	<section class="bg-white w-screen flex justify-between items-center py-3 px-4 lg:px-6">
+	<section class="bg-white w-screen flex justify-between items-center py-3 px-4 lg:px-12">
 		<div class="flex items-center cursor-pointer">
 			<img src="@/assets/images/Native.png" alt="" class="w-10 lg:w-14">
 			<span class="lg:text-xl xl:text-2xl font-bold uppercase text-[#5271a8]">Native Satria Nusantara</span>
