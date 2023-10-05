@@ -4,6 +4,8 @@
             <span class="text-gray -500 font-bold text-xs ">Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal</span>
             <p class="font-bold text-2xl block text-gray-600 mb-4">⬅️ Materi: {{ useRouter().currentRoute.value.params.materiName }}</p>
         </div>
+        <div @click="() => isModalOpen = true">ddddddd</div>
+        
         <div class="px-12 pt-5 pb-7 space-y-5">
             <div class="bg-white text-gray-600 px-7 py-12 flex flex-col justify-center items-center gap-y-10">
                 <div class="font-bold text-3xl">Penilaian Soal</div>
@@ -42,4 +44,5 @@ definePageMeta({
     layout: "tryout",
     // middleware: 'auth',
 })
+
 </script>
