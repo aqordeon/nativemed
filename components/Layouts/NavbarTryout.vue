@@ -6,15 +6,23 @@
 		</div>
 
 		<!-- Navbar: Register/Sign in -->
-		<div class="hidden md:flex gap-x-3 lg:gap-x-6">
+		<!-- <div class="hidden md:flex gap-x-3 lg:gap-x-6">
 			<NuxtLink to="#" class="group relative flex px-2 items-center cursor-pointer">
 				<p>Register</p>
 				<div :class="[route.path.includes('/register') ? 'bg-native-600 w-full left-0' : 'bg-native-300 w-0 left-1/2 group-hover:w-1/2 group-hover:left-[25%]']"
 					class="absolute -bottom-0 h-0.5 bg-native-600 rounded-full transition-all duration-200 ease-in-out" />
 			</NuxtLink>
 			<NuxtLink to="/login" class="px-3 py-2.5 rounded-md bg-native-600 text-white cursor-pointer hover:bg-native-500">Sign in</NuxtLink>
-		</div>
+		</div> -->
 		
+		<div class="hidden md:flex gap-x-3 lg:gap-x-1.5">
+			<span class="px-2.5 py-3">🔔</span>
+			<span class="px-2.5 py-3">📃</span>
+			<div class="px-2.5 py-3">
+				<span>👤</span>
+				<p class="inline">Hello, <span class="font-bold">Jihan</span></p>
+			</div>
+		</div>
         
 	</section>
 </template>

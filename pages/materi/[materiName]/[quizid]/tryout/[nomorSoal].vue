@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-full bg-native-50 pb-5">
         <div class="w-full h-full bg-native-100 px-12 py-4 flex flex-col gap-y-8">
-            <span class="text-gray-500 font-bold text-xs ">Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal</span>
+            <span class="text-gray-500 font-bold text-xs">Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal</span>
             <p class="font-bold text-2xl block text-gray-600">⬅️ Materi: {{ useRouter().currentRoute.value.params.materiName
             }}</p>
         </div>
@@ -9,21 +9,21 @@
             <div class="bg-white rounded-md text-gray-700 py-2.5 px-6 flex w-fit gap-x-2.5 mx-auto -translate-y-1/2">
                 <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">01</div>
                 <span>:</span>
-                <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">01</div>
+                <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">02</div>
                 <span>:</span>
-                <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">01</div>
+                <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">03</div>
             </div>
         </div>
         <div class="px-12 pb -5 space-y-5">
             <div class="flex gap-x-2.5">
-                <div class="bg-white text-gray-600 px-7 py-3 flex justify-between items-center w-full">
+                <div class="bg-white rounded-md text-gray-600 px-7 py-3 flex justify-between items-center w-full">
                     <span>Soal 1</span>
                     <div class="bg-slate-300 text-gray-500 py-2.5 px-5 rounded-full flex gap-x-5 ">
                         <span>1 / 50</span>
                         <span>⬅️➡️</span>
                     </div>
                 </div>
-                <div @click="isModalOpen = true" class="bg-white hover:bg-gray-100 border cursor-pointer border-native-500 rounded-md flex items-center px-4 gap-x-2.5">
+                <div @click="isModalOpen = true" class="bg-white hover:bg-native-100 border cursor-pointer border-native-500 rounded-md flex items-center px-4 gap-x-2.5">
                     <span>📃</span>
                     <span class="whitespace-nowrap">Lihat Jawaban Saya</span>
                 </div>
@@ -32,9 +32,9 @@
                 </div>
             </div>
 
-            <div class="bg-white text-gray-700 py-7 px-8 text-lg flex gap-x-2.5">
+            <div class="bg-white rounded-md text-gray-700 py-7 px-8 text-lg grid grid-cols-12 gap-x-2.5">
                 <!-- Soal -->
-                <div class="bg-native-50 rounded-md px-6 py-5 w-full">
+                <div class="bg-native-50 rounded-md px-6 py-5 col-span-7">
                     <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
@@ -56,13 +56,13 @@
                 </div>
 
                 <!-- List Soal -->
-                <div class="bg-native-50 rounded-md py-4 px-4 w-[80%] space-y-5">
+                <div class="col-span-5 relative bg-native-50 rounded-md py-4 px-4 space-y-5">
                     <div class="text-xl whitespace-nowrap">List Soal</div>
-                    <div class="flex flex-col gap-y-2.5">
+                    <div class="flex flex-col gap-y-2.5 w-full relative">
                         <div v-for="(soal, index) in listSoal" :key="index"
                             class="bg-white rounded-md space-x-2.5 py-2 px-5 flex">
                             <span>{{ index + 1 }}.</span>
-                            <p class="truncate w-full whitespace-nowrap">{{ soal }}</p>
+                            <p class="truncate whitespace-nowrap">{{ soal }}</p>
                         </div>
                     </div>
                 </div>
