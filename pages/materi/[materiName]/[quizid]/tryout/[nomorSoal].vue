@@ -1,10 +1,10 @@
 <template>
     <div class="w-full h-full bg-native-50 pb-5">
-        <div class="w-full h-full bg-native-100 px-12 py-4 flex flex-col gap-y-8">
-            <span class="text-gray-500 font-bold text-xs">Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal</span>
-            <p class="font-bold text-2xl block text-gray-600">⬅️ Materi: {{ useRouter().currentRoute.value.params.materiName
-            }}</p>
-        </div>
+        <TryoutHeaderTryout
+            breadcrumbs="Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal"
+            :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"    
+        />
+        
         <div class="">
             <div class="bg-white rounded-md text-gray-700 py-2.5 px-6 flex w-fit gap-x-2.5 mx-auto -translate-y-1/2">
                 <div class="rounded-md bg-native-300 w-8 aspect-square flex items-center justify-center">01</div>
@@ -70,11 +70,11 @@
 
             <!-- Button: soal sebelumnya, ragu-ragu, soal setelahnya -->
             <div class="flex justify-around">
-                <div class="bg-white border border-native-600 text-native-600 w-fit px-7 py-5 rounded-md text-sm">
-                    ⬅️ Soal sebelumnya
-                </div>
-                <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div>
-                <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div>
+                <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
+                <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
+                <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
+                <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
+                <!-- <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div> -->
             </div>
         </div>
     </div>

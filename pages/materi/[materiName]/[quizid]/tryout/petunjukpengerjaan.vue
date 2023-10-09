@@ -1,9 +1,10 @@
 <template>
     <div class="w-full h-full bg-native-50">
-        <div class="w-full h-full bg-native-100 px-12 py-4 flex flex-col gap-y-8">
-            <span class="text-gray -500 font-bold text-xs ">Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal</span>
-            <p class="font-bold text-2xl block text-gray-600 mb-4">⬅️ Materi: {{ useRouter().currentRoute.value.params.materiName }}</p>
-        </div>
+        <TryoutHeaderTryout
+            breadcrumbs="Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal"
+            :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"    
+        />
+        
         <div class="px-12 py-5 space-y-5">
             <div class="bg-white text-gray-600 px-7 py-3">Petunjuk Soal</div>
             <div class="bg-white text-gray-700 py-12 px-24 space-y-14 text-lg">
