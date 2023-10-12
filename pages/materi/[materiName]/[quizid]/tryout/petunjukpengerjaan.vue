@@ -6,17 +6,22 @@
         />
         
         <div class="px-12 py-5 space-y-5">
-            <div class="bg-white text-gray-600 px-7 py-3">Petunjuk Soal</div>
-            <div class="bg-white text-gray-700 py-12 px-24 space-y-14 text-lg">
+            <!-- Section: Petunjuk Soal -->
+            <div class="bg-white text-gray-600 px-7 py-3 font-bold">Petunjuk Soal</div>
+            
+            <!-- Section: Petunjuk Kuis -->
+            <div class="bg-white text-gray-700 py-8 px-12 space-y-12 text-lg">
                 <h2 class="font-bold text-center">Petunjuk Quiz Penalaran Umum</h2>
-                <div>
-                    <ol class="space-y-4 list-decimal list-inside">
-                        <li v-for="(petunjuk, index) in petunjukQuiz" :key="index" class="leading-none">{{ petunjuk }}</li>
-                    </ol>
-                </div>
-                <div class="font-bold text-center">Selamat Mengerjakan!</div>
+                <ol class="w-fit mx-auto space-y-1.5 list-decimal list-inside">
+                    <li v-for="(petunjuk, index) in petunjukQuiz" :key="index" class="leading-5 text-sm">{{ petunjuk }}</li>
+                </ol>
+                <div class="font-medium text-center">Selamat Mengerjakan!</div>
             </div>
-            <div class="bg-native-600 w-fit mx-auto px-7 py-5 rounded-md text-white text-sm">Mulai Mengerjakan</div>
+
+            <!-- Button: Mulai Mengerjakan   -->
+            <NuxtLink to="2" class="mx-auto w-fit block">
+                <UtilsButton>Mulai Mengerjakan</UtilsButton>
+            </NuxtLink>
         </div>
     </div>
 </template>
