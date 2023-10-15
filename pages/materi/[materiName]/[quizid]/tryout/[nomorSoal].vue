@@ -18,13 +18,13 @@
                         </span>
                     </div>
                 </div>
-                <UtilsButton @click="isModalOpen = true">
+                <UtilsButton @click="isModalJawabanOpen = true" theme="secondary">
                     <template #iconLeft>
                         <BookOpenIcon class="h-4 w-auto" />
                     </template>
                     <span class="whitespace-nowrap">Lihat Jawaban Saya</span>
                 </UtilsButton>
-                <UtilsButton>
+                <UtilsButton @click="isModalKumpulkanQuiz = true">
                     Kumpulkan Quiz
                 </UtilsButton>
             </div>
@@ -58,11 +58,18 @@
                     <div class="text-xl whitespace-nowrap">List Soal</div>
                     <div class="h-[90%] relative overflow-y-auto flex flex-col gap-y-2.5 w-full">
                         <div class="absolute w-full h-full space-y-2.5">
-                            <div v-for="(soal, index) in listSoal" :key="index"
-                                class="bg-white rounded-md space-x-2.5 py-2 px-5 flex">
+                            <!-- Box: List Soal -->
+                            <NuxtLink :to="`${index+1}`" v-for="(soal, index) in listSoal" :key="index"
+                                class="flex items-center rounded-md gap-x-2.5 py-2 px-5 cursor-pointer"
+                                :class="[
+                                    index+1 == currentSoal ? 'bg-native-600 hover:bg-native-500 text-white' : 'bg-white hover:bg-native-100',
+                                    index == 4 || index == 11 || index == 17 || index == 20 ? 'text-gray-300' : ''
+                                ]"
+                            >
                                 <span>{{ index + 1 }}.</span>
                                 <p class="truncate whitespace-nowrap">{{ soal }}</p>
-                            </div>
+                                <CheckCircleIcon v-if="index == 4 || index == 11 || index == 17 || index == 20" class="h-5 w-20 text-green-400" />
+                            </NuxtLink>
                         </div>
                     </div>
                 </div>
@@ -70,30 +77,39 @@
 
             <!-- Button: soal sebelumnya, ragu-ragu, soal setelahnya -->
             <div class="flex justify-around">
-                <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
-                <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
+                <NuxtLink :to="`${currentSoal-1}`">
+                    <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
+                </NuxtLink>
+                <NuxtLink :to="`${currentSoal+1}`">
+                    <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
+                </NuxtLink>
                 <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
                 <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
                 <!-- <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div> -->
             </div>
         </div>
         
-        <!-- Modal: Jihat Jawaban -->
-        <TryoutModalJawaban v-model="isModalOpen" />
+        <!-- Modal -->
+        <TryoutModalJawaban v-model="isModalJawabanOpen" :currentSoal="currentSoal" />
+        <UtilsModal :isOpen="isModalKumpulkanQuiz" @onClose="isModalKumpulkanQuiz = false">
+           ssssssssssss </UtilsModal>
     </div>
 
     
 </template>
 
 <script setup lang="ts">
-import { BookOpenIcon, ChevronUpDownIcon, XMarkIcon } from '@heroicons/vue/24/solid'
+import { BookOpenIcon, ChevronUpDownIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
+
+const currentSoal = ~~(useRouter().currentRoute.value.params.nomorSoal)
 
 definePageMeta({
     layout: "tryout-start",
     // middleware: 'auth',
 })
 
-const isModalOpen = ref(false)
+const isModalJawabanOpen = ref(false)
+const isModalKumpulkanQuiz = ref(false)
 
 
 const listSoal = [

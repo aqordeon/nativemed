@@ -32,7 +32,7 @@ import {
 } from '@headlessui/vue'
 
 const props = defineProps<{
-    isOpen: Boolean
+    isOpen: boolean
 }>()
 
 const emit = defineEmits(['onClose'])
