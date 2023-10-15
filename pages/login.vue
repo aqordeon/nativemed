@@ -21,11 +21,13 @@
                     <p class="font-light text-gray-500">Selamat datang kembali! 👋</p>
                 </div>
                 
-                <form action="" class="mt-10">
+                <form @submit.prevent="submitLogin" class="mt-10">
                     <label for="" class="leading-10 text-gray-600">Email</label>
-                    <input class="w-full px-5 py-3 placeholder:text-gray-300 text-base ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md" placeholder="Masukkan e-mail anda">
+                    <FieldInput v-model="user.username" placeholder="Masukkan e-mail anda" />
                     <label for="" class="leading-10 mt-5 inline-block text-gray-600">Kata Sandi</label>
-                    <input class="w-full px-5 py-3 placeholder:text-gray-300 text-base ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md" placeholder="Masukkan kata sandi anda">
+                    <FieldInput v-model="user.password"
+                        type="password"
+                        placeholder="Masukkan kata sandi anda" />
 
                     <button class="bg-native-500 mt-10 text-white rounded-md py-2.5 px-5">
                         Masuk
@@ -34,20 +36,6 @@
             </div>
 
         </div>
-
-
-        <!-- <div class="title">
-            <h2>Login</h2>
-        </div>
-        <div class="container form">
-            <label for="uname"><b>Username</b></label>
-            <input v-model="user.username" type="text" class="input" placeholder="Enter Username" name="uname" required />
-
-            <label for="psw"><b>Password</b></label>
-            <input v-model="user.password" type="password" class="input" placeholder="Enter Password" name="psw" required />
-
-            <button @click.prevent="login" class="button">Login</button>
-        </div> -->
     </div>
 </template>
 
@@ -56,7 +44,6 @@ import { storeToRefs } from 'pinia'
 
 import { useAuthStore } from '~/store/authStore'
 const { authenticateUser } = useAuthStore()
-
 const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
 definePageMeta({
@@ -69,7 +56,7 @@ const user = ref({
 });
 const router = useRouter()
 
-const login = async () => {
+const submitLogin = async () => {
     await authenticateUser(user.value) // call authenticateUser and pass the user object
     // Redirect to if user already log in
     if (authenticated) {
@@ -77,5 +64,3 @@ const login = async () => {
     }
 }
 </script>
-
-<style scoped></style>

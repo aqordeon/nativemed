@@ -1,11 +1,17 @@
 <template>
-    <div class="flex w-fit h-fit items-center px-4 py-1.5 text-sm gap-x-1 rounded-md" :class="[getTheme(theme), getSize(size)]">
+    <div class="flex w-fit h-fit items-center text-sm gap-x-1 rounded-md cursor-pointer"
+        :class="[getTheme(theme), getSize(size)]">
+        <!-- Icon Left -->
         <div class="h-4 leading-none">
             <slot name="iconLeft" />
         </div>
-        <span class="whitespace-nowrap font-medium leading-5 text-basic-50">
+
+        <!-- Main content -->
+        <span class="whitespace-nowrap font-medium leading-5">
             <slot>{{ label }}</slot>
         </span>
+        
+        <!-- Icon Right -->
         <div class="h-4 leading-none">
             <slot name="iconRight" />
         </div>
@@ -23,28 +29,27 @@ const props = defineProps<{
     size?: string
 }>()
 
-const getSize = (size: string) => {
-    // switch (size){
-    //     // case 'lg':
-    //     //     return 'w-fit px-7 py-5 text-sm';
-    //     // case 'sm':
-    //     //     return 'w-fit h-fit px-4 py-2.5 text-sm';
-    //     default:
-    //         return 'w-fit px-7 py-5 text-sm';
-
-    // }
+const getSize = (size?: string) => {
+    switch (size){
+        // case 'lg':
+        //     return 'w-fit px-7 py-5 text-sm';
+        // case 'sm':
+        //     return 'w-fit h-fit px-4 py-2.5 text-sm';
+        default: 
+            return 'w-fit px-4 py-1.5 text-sm';
+    }
 }
 
-const getTheme = (themeName: string) => {
+const getTheme = (themeName?: string) => {
     switch (themeName){
         case 'primary':
-            return 'bg-native-600 hover:bg-native-500 text-white cursor-pointer rounded-md ';
+            return 'bg-native-600 hover:bg-native-500 text-white';
         case 'secondary':
-            return 'bg-white hover:bg-gray-100 border border-native-600 text-native-600 cursor-pointer rounded-md ';
+            return 'bg-white hover:bg-gray-100 border border-native-600 text-native-600';
         case 'amber':
-            return 'bg-amber-500 hover:bg-amber-400 text-white cursor-pointer rounded-md ';
+            return 'bg-amber-500 hover:bg-amber-400 text-white';
         default:
-            return 'bg-native-600 hover:bg-native-500 text-white cursor-pointer rounded-md ';
+            return 'bg-native-600 hover:bg-native-500 text-white';
     }
 }
 

@@ -18,16 +18,23 @@
 		</div>
 
 		<!-- Navbar: Register/Sign in -->
-		<div class="hidden md:flex gap-x-3 lg:gap-x-6">
+		<div v-if="!authenticated" class="hidden md:flex gap-x-3 lg:gap-x-6">
 			<NuxtLink to="#" class="group relative flex px-2 items-center cursor-pointer">
 				<p>Register</p>
 				<div :class="[route.path.includes('/register') ? 'bg-native-600 w-full left-0' : 'bg-native-300 w-0 left-1/2 group-hover:w-1/2 group-hover:left-[25%]']"
 					class="absolute -bottom-0 h-0.5 bg-native-600 rounded-full transition-all duration-200 ease-in-out" />
 			</NuxtLink>
-			<NuxtLink to="/login" class="px-3 py-2.5 rounded-md bg-native-600 text-white cursor-pointer hover:bg-native-500">Sign in</NuxtLink>
+			<NuxtLink to="/login">
+				<UtilsButton label="Sign in" />
+			</NuxtLink>
+		</div>
+		<div v-else>
+			<NuxtLink to="/materi">
+				<UtilsButton label="Tryout" />
+			</NuxtLink>
 		</div>
 		
-		<!-- Hamburger -->
+		<!-- Mobile: Hamburger -->
 		<div class="md:hidden">
 			<div class="bg-native-200 px-3 py-1 cursor-pointer" @click="isHamburgerOpen = !isHamburgerOpen">+</div>
 			<Transition >
@@ -50,6 +57,10 @@
 import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
 import { useAuthStore } from "~/store/authStore" // import the auth store we just created
 
+definePageMeta({
+    middleware: 'auth'
+})
+
 const router = useRouter()
 const route = useRoute()
 
@@ -60,6 +71,7 @@ const logout = () => {
 	logUserOut()
 	router.push("/login")
 }
+
 
 const isHamburgerOpen = ref(false)
 
@@ -81,7 +93,6 @@ const navbarList = [
 </script>
 
 <style>
-/* we will explain what these classes do next! */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.2s ease;

@@ -3,9 +3,8 @@
         <TryoutHeaderTryout breadcrumbs="Yuk Mulai latihan try out sekarang!" title="&nbsp">
             
         </TryoutHeaderTryout>
-        <div class="w-full h-full bg-white rounded-md py-8 px-8 shadow-md">
 
-<pre>{{ resultData }}</pre>
+        <div class="w-full h-full bg-white rounded-md py-8 px-8 shadow-md">
             <div class="relative">
                 <!-- 2 Box: Dompet & Riwayat Quiz -->
                 <div class="absolute grid grid-cols-2 w-[70%] mx-auto gap-x-3 -translate-y-1/2 left-1/2 -translate-x-1/2 ">
@@ -40,8 +39,7 @@
 
                 <div class="pt-20 grid grid-cols-5 gap-x-5 gap-y-4 flex-wrap">
                     <div v-for="materi in data?.materiList" :key="materi.id" class="flex flex-col justify-center gap-y-2.5">
-                        <div class="bg-native-300 aspect-[5/3] rounded-md" />
-                        <p class="text-gray-700 font-bold text-sm text-center leading-2">{{materi.title}}</p>
+                        <UtilsMateribox :dataMateri="materi"/>
                     </div>
                 </div>
             </div>
@@ -57,10 +55,6 @@ definePageMeta({
 const { data } = await useFetch('/api/materi')
 
 
-
-// definePageMeta({
-//     middleware: 'auth'
-// })
 </script>
 
 <style scoped>
