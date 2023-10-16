@@ -1,7 +1,7 @@
 <template>
     <div class="min-w-52 relative text-stone-600 border border-gray-200 rounded-lg overflow-hidden shadow">
         <div class="h-full pt-4 pb-3 space-y-5 bg-white hover:bg-gray-50"
-            :class="[`border-[${dataMateri.line_color}] border-l-4`]"
+            :class="[dataMateri.line_color ? `border-[${dataMateri.line_color}] border-l-4` : '']"
         >
             <!-- Section: Title & Description -->
             <div class="pl-4 pr-3 space-y-5">

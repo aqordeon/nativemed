@@ -13,7 +13,7 @@
 					<h2 class="font-light text-sm lg:text-base">Dengan pendekatan pembelajaran yang inovatif kami hadir untuk membantumu meraih sukses di UTBK 2024. Bersama, mari wujudkan impian akademikmu!</h2>
 					<div class="mx-auto md:mx-0 flex flex-col md:flex-row gap-y-3 gap-x-3 items-center w-full md:w-[90%]">
 						<input placeholder="Masukkan e-mailmu" class="text-center w-full ring-1 ring-native-300 focus:ring focus:ring-native-500 focus:outline-none rounded-md h-fit py-2 px-2 placeholder:text-indigo-300">
-						<div class="w-full md:w-fit bg-native-600 px-3 py-2.5 text-white rounded-md whitespace-nowrap cursor-pointer hover:bg-native-500">Uji Coba Try Out Gratis</div>
+						<UtilsButton label="Uji Coba Try Out Gratis" />
 					</div>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 				<img src="@/assets/images/book1.png" alt="" class="absolute z-20 -bottom-8 left-14 scale-50 xl:scale-75 anim-move ">
 				<div class="w-full aspect-square relative rounded-full overflow-hidden">
 					<img src="@/assets/images/main.png" alt="" class="absolute z-10">
-					<div class="absolute w-full h-full rounded-full bg-native-400 group-hover:bg-native-500"></div>
+					<div class="absolute w-full h-full rounded-full bg-native-400 group-hover:bg-native-700"></div>
 				</div>
 			</div>
 		</section>

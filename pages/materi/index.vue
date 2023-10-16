@@ -26,7 +26,10 @@
                         <div class="">
                             <div class="space-y-6 text-gray-500">
                                 <span class="font-bold text-sm">💵 Riwayat Quiz</span>
-                                <div><span class="font-bold mr-2">10 Quiz</span>telah</div>
+                                <div class="leading-none">
+                                    <div class="font-bold mr-2">10 Quiz</div>
+                                    <span class="text-xxs">telah dikerjakan</span>
+                                </div>
                             </div>
                         </div>
                         <div class="flex items-center justify-end">

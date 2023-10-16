@@ -62,7 +62,7 @@
                             <NuxtLink :to="`${index+1}`" v-for="(soal, index) in listSoal" :key="index"
                                 class="flex items-center rounded-md gap-x-2.5 py-2 px-5 cursor-pointer"
                                 :class="[
-                                    index+1 == currentSoal ? 'bg-native-600 hover:bg-native-500 text-white' : 'bg-white hover:bg-native-100',
+                                    index+1 == currentSoal ? 'bg-native-600 hover:bg-native-700 text-white' : 'bg-white hover:bg-native-100',
                                     index == 4 || index == 11 || index == 17 || index == 20 ? 'text-gray-300' : ''
                                 ]"
                             >
@@ -92,7 +92,16 @@
         <!-- Modal -->
         <TryoutModalJawaban v-model="isModalJawabanOpen" :currentSoal="currentSoal" />
         <UtilsModal :isOpen="isModalKumpulkanQuiz" @onClose="isModalKumpulkanQuiz = false">
-           ssssssssssss </UtilsModal>
+            <div class="relative py-4 text-gray-700">
+                <XMarkIcon @click="isModalKumpulkanQuiz = false" class="text-gray-500 hover:text-gray-700 cursor-pointer absolute w-5 h-5 right-0 top-0 translate-x-1/2 -translate-y-1/2" />
+                <div class="w-[80%] mx-auto text-center font-medium">Apakah Anda yakin untuk mengumpulkan quiz yang sedang Anda kerjakan?</div>
+                <img class="h-52 my-5 aspect-auto mx-auto" src="@imgs/ill_warning.png" />
+                <div class="relative flex justify-center items-center gap-x-2.5">
+                    <UtilsButton @click="isModalKumpulkanQuiz = false" theme="secondary" label="Kembali" />
+                    <UtilsButton theme="primary" label="Yakin" />
+                </div>
+            </div>
+        </UtilsModal>
     </div>
 
     
