@@ -21,7 +21,7 @@
             <div class="grid grid-cols-10 gap-x-2.5 gap-y-5">
                 <NuxtLink :to="`${index+1}`" v-for="(abc, index) in 50" :key="index"
                     class="flex items-center justify-center cursor-pointer rounded-md h-12 aspect-square focus:ring-offset-2 focus:ring-2 focus:ring-native-600"
-                    :class="currentSoal == index+1 ? 'bg-native-600 text-white shadow-lg' : [index == 7 || index == 13 || index == 14 || index == 25 || index == 42 ? 'bg-secondary-200 hover:bg-secondary-300' : 'bg-native-200 hover:bg-native-300']"
+                    :class="nomorSoal == index+1 ? 'bg-native-600 text-white shadow-lg' : [index == 7 || index == 13 || index == 14 || index == 25 || index == 42 ? 'bg-secondary-200 hover:bg-secondary-300' : 'bg-native-200 hover:bg-native-300']"
                 >
                     {{ index + 1 }}
                 </NuxtLink>
@@ -35,7 +35,7 @@ import { XMarkIcon } from '@heroicons/vue/24/solid'
 
 const props = defineProps<{
     modelValue: boolean
-    currentSoal: number
+    nomorSoal: number
 }>()
 
 const emits = defineEmits<{

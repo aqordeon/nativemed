@@ -11,8 +11,9 @@ export default defineEventHandler((event) => {
                     'Pengaruh Gravitasi',
                     'Rotasi Mars',
                 ],
-                answer: 1,
-                action: null,
+                correctAnswer: 1,
+                selectedAnswer: false,  // false or 0-4
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 2,
@@ -24,8 +25,9 @@ export default defineEventHandler((event) => {
                     'Api',
                     'Air',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 3,
@@ -37,8 +39,9 @@ export default defineEventHandler((event) => {
                     'Evolusi',
                     'Dekomposisi',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 4,
@@ -50,8 +53,9 @@ export default defineEventHandler((event) => {
                     'Pelangi adalah ilusi optik',
                     'Pigmen di langit membentuk pelangi',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 5,
@@ -63,8 +67,9 @@ export default defineEventHandler((event) => {
                     'Rotasi Bulan',
                     'Perubahan matahari',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 6,
@@ -76,8 +81,9 @@ export default defineEventHandler((event) => {
                     'Penyaringan limbah',
                     'Menghasilkan hormon',
                 ],
-                answer: 1,
-                action: null,
+                correctAnswer: 1,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 7,
@@ -89,8 +95,9 @@ export default defineEventHandler((event) => {
                     'Barometer',
                     'Spektrometer',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 8,
@@ -102,8 +109,9 @@ export default defineEventHandler((event) => {
                     'Melalui batang',
                     'Melalui akar dan daun',
                 ],
-                answer: 1,
-                action: null,
+                correctAnswer: 1,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 9,
@@ -115,8 +123,9 @@ export default defineEventHandler((event) => {
                     'Perubahan pigmen',
                     'Hujan deras',
                 ],
-                answer: 3,
-                action: null,
+                correctAnswer: 3,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 10,
@@ -128,8 +137,9 @@ export default defineEventHandler((event) => {
                     'Sifat lensa mata',
                     'Warna cahaya yang dipantulkan',
                 ],
-                answer: 4,
-                action: null,
+                correctAnswer: 4,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 11,
@@ -141,8 +151,9 @@ export default defineEventHandler((event) => {
                     'Penguapan',
                     'Pembekuan',
                 ],
-                answer: 3,
-                action: null,
+                correctAnswer: 3,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 12,
@@ -154,8 +165,9 @@ export default defineEventHandler((event) => {
                     'Gangguan magnetik',
                     'Pengaruh angin',
                 ],
-                answer: 2,
-                action: null,
+                correctAnswer: 2,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 13,
@@ -167,8 +179,9 @@ export default defineEventHandler((event) => {
                     'Asthenosfer',
                     'Litosfer',
                 ],
-                answer: 2,
-                action: null,
+                correctAnswer: 2,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 14,
@@ -180,8 +193,9 @@ export default defineEventHandler((event) => {
                     'Asteroid',
                     'Galaksi',
                 ],
-                answer: 1,
-                action: null,
+                correctAnswer: 1,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 15,
@@ -193,8 +207,9 @@ export default defineEventHandler((event) => {
                     'Kapal layar',
                     'Roket',
                 ],
-                answer: 2,
-                action: null,
+                correctAnswer: 2,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 16,
@@ -206,8 +221,9 @@ export default defineEventHandler((event) => {
                     'Komusti',
                     'Kemosintesis',
                 ],
-                answer: 3,
-                action: null,
+                correctAnswer: 3,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 17,
@@ -219,8 +235,9 @@ export default defineEventHandler((event) => {
                     'Panen angin',
                     'Gas alam',
                 ],
-                answer: 2,
-                action: null,
+                correctAnswer: 2,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 18,
@@ -232,8 +249,9 @@ export default defineEventHandler((event) => {
                     'Voltmeter',
                     'Ammeter',
                 ],
-                answer: 2,
-                action: null,
+                correctAnswer: 2,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 19,
@@ -245,8 +263,9 @@ export default defineEventHandler((event) => {
                     'Neptunus',
                     'Saturnus',
                 ],
-                answer: 1,
-                action: null,
+                correctAnswer: 1,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
             {
                 id: 20,
@@ -258,8 +277,9 @@ export default defineEventHandler((event) => {
                     'Pengaruh gravitasi',
                     'Rotasi Bulan',
                 ],
-                answer: 0,
-                action: null,
+                correctAnswer: 0,
+                selectedAnswer: false,
+                action: null,  // false, 'skip', 'answered'
             },
         ]
     }
