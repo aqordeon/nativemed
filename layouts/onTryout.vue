@@ -10,14 +10,13 @@
                 <!-- Section: Top of soal (Lihat Jawaban Saya, Kumpulkan Quiz ) -->
                 <div class="flex gap-x-2.5 items-center">
                     <div class="bg-white rounded-md text-gray-600 px-5 py-[5px] flex justify-between items-center w-full">
-                        <div class="text-stone-900 text-sm font-bold leading-tight">Soal 1</div>
-                        <div class="bg-native-100 py-[5px] px-5 rounded-full flex gap-x-5 ">
+                        <div class="text-stone-900 text-sm font-bold leading-tight">Soal {{currentSoal.id}}</div>
+                        <!-- <div class="bg-native-100 py-[5px] px-5 rounded-full flex gap-x-5 ">
                             <div class="text-stone-900 text-sm font-medium leading-tight">1 / 50</div>
                             <span>
-                                <!-- not appear -->
                                 <ChevronUpDownIcon class="h-4 rotate-90" />
                             </span>
-                        </div>
+                        </div> -->
                     </div>
                     <UtilsButton @click="isModalJawabanOpen = true" theme="secondary">
                         <template #iconLeft>
@@ -44,15 +43,15 @@
                                 <NuxtLink :to="`${index + 1}`" v-for="(soal, index) in quizList" :key="index"
                                     class="relative shadow text-xs flex items-center rounded-md gap-x-2.5 py-2 pl-5 pr-9 cursor-pointer" :class="[
                                         index + 1 == nomorSoal
-                                            ? 'bg-native-600 hover:bg-native-700 text-white'
+                                            ? 'bg-native-600 hover:bg-native-700 text-white' // If CurrentSoal
                                             : soal.selectedAnswer !== false
-                                                ? 'bg-native-200 hover:bg-native-300'
-                                                : 'bg-white hover:bg-native-100',
+                                                ? 'bg-native-200 hover:bg-native-300' // If not currentSoal and answered
+                                                : 'bg-white hover:bg-native-100 border border-gray-200',
                                         {'text-gray-300': soal.action == 'answered'},
                                 ]">
                                     <span>{{ index + 1 }}.</span>
                                     <p class="truncate whitespace-nowrap">{{ soal.question }}</p>
-                                    <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute -right-4 h-5 w-20 text-green-400" />
+                                    <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute right-4 h-5 w-5 text-green-400" />
                                 </NuxtLink>
                             </div>
                         </div>
@@ -87,7 +86,9 @@
                     <img class="h-52 my-5 aspect-auto mx-auto" src="@imgs/ill_warning.png" />
                     <div class="relative flex justify-center items-center gap-x-2.5">
                         <UtilsButton @click="isModalKumpulkanQuiz = false" theme="secondary" label="Kembali" />
-                        <UtilsButton theme="primary" label="Yakin" />
+                        <NuxtLink to="hasilakhir">
+                            <UtilsButton theme="primary" label="Yakin" />
+                        </NuxtLink>
                     </div>
                 </div>
             </UtilsModal>
@@ -106,11 +107,10 @@ const nomorSoal = computed(() => {
     return ~~(useRouter().currentRoute.value.params.nomorSoal)
 })
 
-
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
-quizList.value = data?.value.quizTrial
+quizList.value = data?.value.quizTrial  // Save the quiz list to Pinia after fetch
 
 </script>
 

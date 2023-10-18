@@ -16,7 +16,7 @@ export const useTryoutStore = defineStore('auth', {
         },
 
         countAnswered(state){
-            return state.quizList.filter(item => item.selectedAnswer).length ?? 0
+            return state.quizList.filter(item => item.selectedAnswer !== false).length ?? 0
         }
         
     }

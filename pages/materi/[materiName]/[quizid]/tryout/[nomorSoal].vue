@@ -2,7 +2,8 @@
     <div class="h-full relative bg-native-50 py-4 rounded-md col-span-7">
         <div class="absolute px-6 h-[95%] overflow-y-auto w-full">
             <p class="text-stone-900 text-sm font-normal mb-6">
-                {{ currentSoal.question }}
+                <Transition name="slide-fade" mode="out-in">
+{{ currentSoal.question }}</Transition>
             </p>
             <!-- "@imgs/soal.png" -->
             <img v-if="currentSoal.image" :src="currentSoal.image" alt="" class="max-h-56 mb-8 aspect-auto">
