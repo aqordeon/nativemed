@@ -47,7 +47,7 @@ const getTheme = (themeName?: string) => {
         case 'secondary':
             return 'bg-white hover:bg-gray-100 border border-native-600 text-native-600';
         case 'amber':
-            return 'bg-amber-500 hover:bg-amber-400 text-white';
+            return 'bg-secondary-600 hover:bg-secondary-700 text-white';
         default:
             return 'bg-native-600 hover:bg-native-700 text-white';
     }

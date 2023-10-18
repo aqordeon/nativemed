@@ -42,15 +42,17 @@
                             <div class="absolute w-full h-full space-y-2.5">
                                 <!-- Box: List Soal -->
                                 <NuxtLink :to="`${index + 1}`" v-for="(soal, index) in quizList" :key="index"
-                                    class="flex items-center rounded-md gap-x-2.5 py-2 px-5 cursor-pointer" :class="[
-                                        index + 1 == nomorSoal ? 'bg-native-600 hover:bg-native-700 text-white' : 'bg-white hover:bg-native-100',
+                                    class="relative shadow text-xs flex items-center rounded-md gap-x-2.5 py-2 pl-5 pr-9 cursor-pointer" :class="[
+                                        index + 1 == nomorSoal
+                                            ? 'bg-native-600 hover:bg-native-700 text-white'
+                                            : soal.selectedAnswer !== false
+                                                ? 'bg-native-200 hover:bg-native-300'
+                                                : 'bg-white hover:bg-native-100',
                                         {'text-gray-300': soal.action == 'answered'},
-                                        
                                 ]">
                                     <span>{{ index + 1 }}.</span>
                                     <p class="truncate whitespace-nowrap">{{ soal.question }}</p>
-                                    <CheckCircleIcon v-if="soal.action == 'answered'"
-                                        class="h-5 w-20 text-green-400" />
+                                    <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute -right-4 h-5 w-20 text-green-400" />
                                 </NuxtLink>
                             </div>
                         </div>
@@ -62,23 +64,26 @@
                     <NuxtLink :to="`${nomorSoal - 1}`">
                         <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
                     </NuxtLink>
-                    <NuxtLink :to="`${nomorSoal + 1}`">
+                    <NuxtLink @click="currentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
                         <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
                     </NuxtLink>
-                    <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
+                    <UtilsButton @click="currentSoal.action = 'answered'" :to="`${nomorSoal + 1}`" theme="amber">Soal setelahnya ➡️</UtilsButton>
                     <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
                     <!-- <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div> -->
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal: Review Jawaban -->
             <TryoutModalJawaban v-model="isModalJawabanOpen" :nomorSoal="nomorSoal" />
+            
+            <!-- Modal: Submit Quiz -->
             <UtilsModal :isOpen="isModalKumpulkanQuiz" @onClose="isModalKumpulkanQuiz = false">
                 <div class="relative py-4 text-gray-700">
                     <XMarkIcon @click="isModalKumpulkanQuiz = false"
                         class="text-gray-500 hover:text-gray-700 cursor-pointer absolute w-5 h-5 right-0 top-0 translate-x-1/2 -translate-y-1/2" />
-                    <div class="w-[80%] mx-auto text-center font-medium">Apakah Anda yakin untuk mengumpulkan quiz yang
-                        sedang Anda kerjakan?</div>
+                    <div class="w-[80%] mx-auto text-center font-medium">
+                        Apakah Anda yakin untuk mengumpulkan quiz yang sedang Anda kerjakan?
+                    </div>
                     <img class="h-52 my-5 aspect-auto mx-auto" src="@imgs/ill_warning.png" />
                     <div class="relative flex justify-center items-center gap-x-2.5">
                         <UtilsButton @click="isModalKumpulkanQuiz = false" theme="secondary" label="Kembali" />
@@ -87,7 +92,6 @@
                 </div>
             </UtilsModal>
         </div>
-        <!-- {{ quizList }} -->
 	</div>
 </template>
 
@@ -96,20 +100,16 @@ import { BookOpenIcon, ChevronUpDownIcon, XMarkIcon, CheckCircleIcon } from '@he
 import { storeToRefs } from "pinia"
 import { useTryoutStore } from '~/store/tryoutStore'
 const { data } = await useFetch('/api/quiz_trial') // fetch data Quiz
-const { soalName, quizList } = storeToRefs(useTryoutStore())
+const { materiName, quizList, currentSoal } = storeToRefs(useTryoutStore())
 
 const nomorSoal = computed(() => {
     return ~~(useRouter().currentRoute.value.params.nomorSoal)
 })
 
-const currentSoal = computed(() => {
-    return quizList.value.filter(item => item.id == useRouter().currentRoute.value.params.nomorSoal)
-})
 
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
-soalName.value = useRouter().currentRoute.value.params.materiName
 quizList.value = data?.value.quizTrial
 
 </script>

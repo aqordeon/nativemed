@@ -17,6 +17,9 @@
                     <p class="mb-4">
                         We are still here to help you around.
                     </p>
+                    <pre>{{ error }}</pre>
+                    <p v-html="error.stack">
+                    </p>
                 </div>
                 <button @click="() => router.back()" class="flex justify-center bg-indigo-700 hover:bg-indigo-500 text-gray-100 px-4 py-1.5 rounded-md border border-indigo-600">
                     Go back
