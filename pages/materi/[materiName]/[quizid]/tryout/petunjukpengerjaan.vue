@@ -1,13 +1,13 @@
 <template>
     <div class="w-full h-full bg-native-50">
-        <TryoutHeaderTryout
-            breadcrumbs="Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal"
-            :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"    
-        />
-        
+        <TryoutHeaderTryout breadcrumbs="Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal"
+            :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`" />
+
         <div class="px-12 py-5 space-y-5">
             <!-- Section: Petunjuk Soal -->
             <div class="bg-white text-gray-600 px-7 py-3 font-bold">Petunjuk Soal</div>
+            <!-- <p v-if="!timerExpired">Time Left: {{ hours }} hours {{ minutes }} minutes {{ seconds }} seconds</p>
+            <p v-else>Time's up!</p> -->
             
             <!-- Section: Petunjuk Kuis -->
             <div class="bg-white text-gray-700 py-8 px-12 space-y-12 text-lg">
@@ -18,20 +18,25 @@
                 <div class="font-medium text-center">Selamat Mengerjakan!</div>
             </div>
 
-            <!-- Button: Mulai Mengerjakan   -->
-            <NuxtLink to="2" class="mx-auto w-fit block">
-                <UtilsButton>Mulai Mengerjakan</UtilsButton>
+            <!-- Button: Mulai Mengerjakan -->
+            <NuxtLink to="1" class="block mx-auto">
+                <UtilsButton @click="onClickMulaiMengerjakan(600)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
             </NuxtLink>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useTryoutTimeStore } from '~/store/tryoutTime'
+import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
+
 definePageMeta({
     layout: "tryout",
     // middleware: 'auth',
 })
 
+// const { hours, minutes, seconds, timerExpired } = storeToRefs(useTryoutTimeStore())
+const { onClickMulaiMengerjakan } = useTryoutTimeStore()
 
 const quizId = ref('')
 const petunjukQuiz = [
@@ -48,6 +53,7 @@ onMounted(() => {
     // Access the dynamic parameter "id" from the route
     quizId.value = useRouter().currentRoute.value.params.quizid
 })
+
 </script>
 
 <style scoped></style>

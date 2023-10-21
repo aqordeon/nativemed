@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    breadcrumbs: string[]
+    breadcrumbs: string[] | any
     title: string
     timer?: boolean
 }>()

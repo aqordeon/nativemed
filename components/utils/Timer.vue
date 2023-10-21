@@ -3,22 +3,25 @@
         <div class="text-stone-900 text-xs font-bold leading-none justify-center items-center gap-2.5 inline-flex">
             <div
                 class="w-7 h-7 px-4 py-4 bg-violet-200 rounded-md flex-col justify-center items-center inline-flex">
-                <div class="">01</div>
+                <div class="">{{ String(hours).padStart(2, '0') }}</div>
             </div>
             <div class="">:</div>
             <div
                 class="w-7 h-7 px-4 py-4 bg-violet-200 rounded-md flex-col justify-center items-center inline-flex">
-                <div class="">01</div>
+                <div class="">{{ String(minutes).padStart(2, '0') }}</div>
             </div>
             <div class="">:</div>
             <div
                 class="w-7 h-7 px-4 py-4 bg-violet-200 rounded-md flex-col justify-center items-center inline-flex">
-                <div class="">01</div>
+                <div class="">{{ String(seconds).padStart(2, '0') }}</div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useTryoutTimeStore } from '~/store/tryoutTime'
+import { storeToRefs } from 'pinia'
+const { hours, minutes, seconds, timerExpired } = storeToRefs(useTryoutTimeStore())
 
 </script>

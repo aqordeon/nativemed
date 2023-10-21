@@ -40,19 +40,21 @@
                         <div class="h-[90%] relative overflow-y-auto flex flex-col gap-y-2.5 w-full">
                             <div class="absolute w-full h-full space-y-2.5">
                                 <!-- Box: List Soal -->
-                                <NuxtLink :to="`${index + 1}`" v-for="(soal, index) in quizList" :key="index"
-                                    class="relative shadow text-xs flex items-center rounded-md gap-x-2.5 py-2 pl-5 pr-9 cursor-pointer" :class="[
-                                        index + 1 == nomorSoal
-                                            ? 'bg-native-600 hover:bg-native-700 text-white' // If CurrentSoal
-                                            : soal.selectedAnswer !== false
-                                                ? 'bg-native-200 hover:bg-native-300' // If not currentSoal and answered
-                                                : 'bg-white hover:bg-native-100 border border-gray-200',
-                                        {'text-gray-300': soal.action == 'answered'},
-                                ]">
-                                    <span>{{ index + 1 }}.</span>
-                                    <p class="truncate whitespace-nowrap">{{ soal.question }}</p>
-                                    <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute right-4 h-5 w-5 text-green-400" />
-                                </NuxtLink>
+                                <template v-if="quizList">
+                                    <NuxtLink :to="`${index + 1}`" v-for="(soal, index) in quizList" :key="index"
+                                        class="relative shadow text-xs flex items-center rounded-md gap-x-2.5 py-2 pl-5 pr-9 cursor-pointer" :class="[
+                                            index + 1 == nomorSoal
+                                                ? 'bg-native-600 hover:bg-native-700 text-white' // If CurrentSoal
+                                                : soal.selectedAnswer !== false
+                                                    ? 'bg-native-200 hover:bg-native-300' // If not currentSoal and answered
+                                                    : 'bg-white hover:bg-native-100 border border-gray-200',
+                                            {'text-gray-300': soal.action == 'answered'},
+                                    ]">
+                                        <span>{{ index + 1 }}.</span>
+                                        <p class="truncate whitespace-nowrap">{{ soal.question }}</p>
+                                        <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute right-4 h-5 w-5 text-green-400" />
+                                    </NuxtLink>
+                                </template>
                             </div>
                         </div>
                     </div>
