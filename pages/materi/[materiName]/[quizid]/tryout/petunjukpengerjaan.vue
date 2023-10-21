@@ -19,7 +19,7 @@
             </div>
 
             <!-- Button: Mulai Mengerjakan -->
-            <NuxtLink to="1" class="block mx-auto">
+            <NuxtLink to="1" class="block mx-auto" external>
                 <UtilsButton @click="onClickMulaiMengerjakan(600)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
             </NuxtLink>
         </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useTryoutTimeStore } from '~/store/tryoutTime'
+import { useTryoutTimeStore } from '~/store/onTryout'
 import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
 
 definePageMeta({

@@ -3,7 +3,17 @@
         <div class="w-full h-full flex flex-col overflow-hidden bg-red-50 pb-5 pt-0 relative">
             <div class="mb-2.5">
                 <TryoutHeaderTryout :timer="true" :breadcrumbs="['Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal']"
-                    :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`" />
+                    :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"
+                >
+                <template #breadcrumbs>
+                    <div class="capitalize">
+                        <template v-for="(params, key) in useRouter().currentRoute.value.params" :key="key">
+                            <span>{{ params.replace("_", " ") }}</span>
+                            <span class="last:hidden"> / </span>
+                        </template>
+                    </div>
+                </template>
+                </TryoutHeaderTryout>
             </div>
 
             <div class="h-full px-12 space-y-5 relative">
@@ -102,6 +112,14 @@
 import { BookOpenIcon, ChevronUpDownIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
 import { storeToRefs } from "pinia"
 import { useTryoutStore } from '~/store/tryoutStore'
+import { useTryoutTimeStore } from '~/store/onTryout'
+const { onStartTryout } = useTryoutTimeStore()
+
+console.log(useCookie('isOnTryout').value)
+if(useCookie('isOnTryout').value){
+    useCookie('isOnTryout').value !== true ? useRouter().push(`petunjukpengerjaan`) : ''
+}
+
 const { data } = await useFetch('/api/quiz_trial') // fetch data Quiz
 const { materiName, quizList, currentSoal } = storeToRefs(useTryoutStore())
 
@@ -112,8 +130,15 @@ const nomorSoal = computed(() => {
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
-quizList.value = data?.value.quizTrial  // Save the quiz list to Pinia after fetch
+watchEffect(() => {
+    console.log(data.value)
+    quizList.value = data?.value.quizTrial // Save the quiz list to Pinia after fetch
+    // if(!quizList.value || !materiName.value || !currentSoal.value) useRouter().push('petunjukpengerjaan')
+})
 
+onMounted(() => {
+    onStartTryout()
+})
 </script>
 
 <style scoped></style>

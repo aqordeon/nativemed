@@ -12,6 +12,7 @@ export const useTryoutTimeStore = defineStore('tryoutTime', {
 
     actions: {
         async onClickMulaiMengerjakan(timeInSeconds: number) {
+            useCookie('isOnTryout').value = JSON.stringify(true)
             if (useCookie('tryoutStartTime').value) {  // If cookie exist
                 this.tryoutStartTime = new Date(useCookie('tryoutStartTime').value)
             } else {
@@ -19,10 +20,13 @@ export const useTryoutTimeStore = defineStore('tryoutTime', {
                 useCookie('tryoutStartTime').value = JSON.stringify(this.tryoutStartTime)  // save new date to Cookie
             }
 
+        },
+
+        onStartTryout() {
             const countdownInterval = setInterval(() => {
                 const currentTime = new Date() 
                 const elapsedTime = differenceInSeconds(currentTime, this.tryoutStartTime)
-                const timeLeft = Math.max(timeInSeconds - elapsedTime, 0)
+                const timeLeft = Math.max(useCookie('tryoutDuration').value - elapsedTime, 0)
                 console.log(timeLeft)
         
                 if (timeLeft === 0) { // If countdown is 0
@@ -30,6 +34,7 @@ export const useTryoutTimeStore = defineStore('tryoutTime', {
                     this.hours = 0
                     this.minutes = 0
                     this.seconds = 0
+                    useCookie('isOnTryout').value = false
                     useCookie('tryoutStartTime').value = ''
                     this.timerExpired = true  // set that the timer is expired
                 } else {  // if countdown still running
@@ -39,6 +44,12 @@ export const useTryoutTimeStore = defineStore('tryoutTime', {
                 }
             }, 1000)
         },
+
+        onSubmitTryout() {
+            useCookie('tryoutDuration').value = ''
+            useCookie('tryoutStartTime').value = ''
+            useCookie('isOnTryout').value = false
+        }
     },
 
     // getters: {

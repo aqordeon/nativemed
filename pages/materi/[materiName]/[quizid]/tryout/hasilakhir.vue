@@ -47,25 +47,7 @@ definePageMeta({
     // middleware: 'auth',
 })
 
-import { storeToRefs } from "pinia"
 import { useTryoutStore } from '~/store/tryoutStore'
 
-const { materiName, quizList, currentSoal } = storeToRefs(useTryoutStore())
-
-const compFinalResult = computed(() => {
-    return compSoalBenar.value/quizList.value.length * 100
-})
-
-const compSoalBenar = computed(() => {
-    return quizList.value.filter(item => item.correctAnswer === item.selectedAnswer).length
-})
-
-const compSoalSalah = computed(() => {
-    return quizList.value.filter(item => item.correctAnswer !== item.selectedAnswer).length
-})
-
-const compSoalTidakDijawab = computed(() => {
-    return quizList.value.filter(item => item.selectedAnswer === false).length
-})
-
+const { compFinalResult, compSoalTidakDijawab, compSoalSalah, compSoalBenar } = useTryoutStore()
 </script>
