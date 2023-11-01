@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     css: ['~/assets/stylesheet/index.scss'],
     modules: [
         '@pinia/nuxt',
+        '@nuxtjs/supabase',
     ],
     postcss: {
         plugins: {

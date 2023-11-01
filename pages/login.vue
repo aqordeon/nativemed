@@ -21,10 +21,11 @@
                     <p class="font-light text-gray-500">Selamat datang kembali! 👋</p>
                 </div>
                 
+                <!-- Form -->
                 <form @submit.prevent="submitLogin" class="mt-10">
                     <label for="" class="leading-10 text-gray-600">Email</label>
-                    <FieldInput v-model="user.username" placeholder="Masukkan e-mail anda" />
-                    <label for="" class="leading-10 mt-5 inline-block text-gray-600">Kata Sandi</label>
+                    <FieldInput v-model="user.email" placeholder="Masukkan e-mail anda" />
+                    <label for="" class="leading-10 mt-5 inline-p455w0rd text-gray-600">Kata Sandi</label>
                     <FieldInput v-model="user.password"
                         type="password"
                         placeholder="Masukkan kata sandi anda" />
@@ -41,8 +42,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-
 import { useAuthStore } from '~/store/authStore'
+
 const { authenticateUser } = useAuthStore()
 const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
@@ -51,16 +52,25 @@ definePageMeta({
 })
 
 const user = ref({
-    username: 'kminchelle',
-    password: '0lelplR',
+    email: "aqordivika@gmail.com",
+    password: "p455w0rd",
 });
 const router = useRouter()
 
+// const submitLogin = async () => {
+    // from first tutorial
+//     await authenticateUser(user.value) // call authenticateUser and pass the user object
+//     // Redirect to if user already log in
+//     if (authenticated) {
+//         router.push('/')
+//     }
+// }
+
 const submitLogin = async () => {
     await authenticateUser(user.value) // call authenticateUser and pass the user object
-    // Redirect to if user already log in
     if (authenticated) {
-        router.push('/')
+        router.push('/') // Redirect to if user already log in
     }
 }
+
 </script>

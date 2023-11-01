@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
+// const client = 
 
 interface UserPayloadInterface {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -12,23 +13,20 @@ export const useAuthStore = defineStore('auth', {
     }),
 
     actions: {
-        async authenticateUser({ username, password }: UserPayloadInterface) {
+        async authenticateUser({ email, password }: UserPayloadInterface) {
+            // console.log("aaaaaaaaaaaaa")
             // useFetch from nuxt 3
-            const { data, pending }: any = await useFetch('https://dummyjson.com/auth/login', {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: {
-                    username,
-                    password,
-                },
+            this.loading = true;
+            const { data, error } = await useSupabaseClient().auth.signInWithPassword({
+                email: email,
+                password: password,
             })
-            this.loading = pending;
 
-            if (data.value) {
-                console.log(data.value)
+            if (data) {
+                // console.log(data)
                 const token = useCookie('token'); // useCookie new hook in nuxt 3
-                token.value = data?.value?.token; // set token to cookie
-                this.authenticated = true; // set authenticated  state value to true
+                token.value = JSON.stringify(data?.session) // set token to cookie
+                this.authenticated = true // set authenticated  state value to true
             }
         },
 
