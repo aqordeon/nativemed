@@ -18,29 +18,33 @@
 		<div class="hidden md:flex gap-x-3 lg:gap-x-1.5">
 			<span class="px-2.5 py-3">🔔</span>
 			<span class="px-2.5 py-3">📃</span>
-			<div class="px-2.5 py-3">
-				<span>👤</span>
-				<p class="inline">Hello, <span class="font-bold">Jihan</span></p>
+			<div class="px-2.5 py-3 flex items-center">
+				👤
+				<Popover class="relative">
+					<PopoverButton>Hello, <span class="font-bold">Jihan</span></PopoverButton>
+
+					<PopoverPanel class="absolute z-10 top-8 left-0">
+						<div class="bg-white rounded-md shadow overflow-hidden">
+							<div @click="userLogout" class="flex px-6 hover:bg-native-200 py-2 cursor-pointer">Logout</div>
+						</div>
+					</PopoverPanel>
+				</Popover>
 			</div>
 		</div>
         
 	</section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
 import { useAuthStore } from "~/store/authStore" // import the auth store we just created
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 
 const router = useRouter()
 const route = useRoute()
 
-const { logUserOut } = useAuthStore() // use authenticateUser action from  auth store
+const { userLogout } = useAuthStore() // use authenticateUser action from  auth store
 const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
-
-const logout = () => {
-	logUserOut()
-	router.push("/login")
-}
 
 const isHamburgerOpen = ref(false)
 
@@ -58,5 +62,6 @@ const navbarList = [
 		url: '/faq'
 	},
 ]
+
 
 </script>

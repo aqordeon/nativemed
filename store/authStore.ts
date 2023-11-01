@@ -28,12 +28,14 @@ export const useAuthStore = defineStore('auth', {
                 token.value = JSON.stringify(data?.session) // set token to cookie
                 this.authenticated = true // set authenticated  state value to true
             }
+            console.log(error)
+            this.loading = true;
         },
 
-        logUserOut() {
-            const token = useCookie('token')
-            this.authenticated = false // Set state value to false
-            token.value = null // Set token value in Cookie to null
-        },
+        async userLogout() {
+            const { error } = await useSupabaseClient().auth.signOut()
+            if(error) console.log("Error on Logout", error)
+            useRouter().push(`/login`)
+        }
     },
 });

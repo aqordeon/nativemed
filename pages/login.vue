@@ -22,7 +22,7 @@
                 </div>
                 
                 <!-- Form -->
-                <form @submit.prevent="submitLogin" class="mt-10">
+                <form class="mt-10">
                     <label for="" class="leading-10 text-gray-600">Email</label>
                     <FieldInput v-model="user.email" placeholder="Masukkan e-mail anda" />
                     <label for="" class="leading-10 mt-5 inline-p455w0rd text-gray-600">Kata Sandi</label>
@@ -30,9 +30,9 @@
                         type="password"
                         placeholder="Masukkan kata sandi anda" />
 
-                    <button class="bg-native-500 mt-10 text-white rounded-md py-2.5 px-5">
-                        Masuk
-                    </button>
+                    <UtilsButton @click="submitLogin" label="Masuk" class="mt-10">
+                    </UtilsButton>
+                    <p v-if="loading">Loading..</p>
                 </form>
             </div>
 
@@ -45,7 +45,7 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '~/store/authStore'
 
 const { authenticateUser } = useAuthStore()
-const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
+const { authenticated, loading } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
 definePageMeta({
     layout: false,
