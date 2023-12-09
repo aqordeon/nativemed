@@ -28,4 +28,11 @@ export default defineNuxtConfig({
         },
     },
     ssr: true,
+    supabase: {
+        redirectOptions: {
+            login: '/login',
+            callback: '/confirm',
+            exclude: ['/', '/register'],
+        }
+    }
 })

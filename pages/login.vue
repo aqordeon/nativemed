@@ -12,7 +12,7 @@
         <div class="flex items-center">
             <div class="absolute top-5 right-9 flex gap-x-2">
                 <p class="text-gray-400">Belum punya akun?</p>
-                <NuxtLink to="#" class="font-medium">Daftar</NuxtLink>
+                <NuxtLink to="register" class="font-medium">Daftar</NuxtLink>
             </div>
 
             <div class="px-9">
@@ -32,7 +32,10 @@
 
                     <UtilsButton @click="submitLogin" label="Masuk" class="mt-10">
                     </UtilsButton>
-                    <p v-if="loading">Loading..</p>
+                    <div v-if="supabaseResponse?.error" class="mt-2 text-red-500">{{ supabaseResponse?.error.message }}</div>
+                    <!-- <pre>
+                        <div>{{ supabaseResponse }}</div>
+                    </pre> -->
                 </form>
             </div>
 
@@ -41,11 +44,11 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useAuthStore } from '~/store/authStore'
+// import { storeToRefs } from 'pinia'
+// import { useAuthStore } from '~/store/authStore'
 
-const { authenticateUser } = useAuthStore()
-const { authenticated, loading } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
+// const { authenticateUser } = useAuthStore()
+// const { authenticated, loading } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
 definePageMeta({
     layout: false,
@@ -66,11 +69,16 @@ const router = useRouter()
 //     }
 // }
 
+const supabaseResponse = ref()
+
 const submitLogin = async () => {
-    await authenticateUser(user.value) // call authenticateUser and pass the user object
-    if (authenticated) {
-        router.push('/') // Redirect to if user already log in
-    }
+    supabaseResponse.value = await useSupabaseClient().auth.signInWithPassword({
+        email: user.value.email,
+        password: user.value.password,
+    })
+    console.log(supabaseResponse.value)
+
+    if(supabaseResponse.value.data) useRouter().push('/materi')
 }
 
 </script>

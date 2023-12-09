@@ -43,10 +43,16 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 const router = useRouter()
 const route = useRoute()
 
-const { userLogout } = useAuthStore() // use authenticateUser action from  auth store
+// const { userLogout } = useAuthStore() // use authenticateUser action from  auth store
 const { authenticated } = storeToRefs(useAuthStore()) // make authenticated state reactive with storeToRefs
 
 const isHamburgerOpen = ref(false)
+
+const userLogout = async () => {
+	const { error } = await useSupabaseClient().auth.signOut()
+	if(error) console.log("Error on Logout", error)
+	useRouter().push(`/login`)
+}
 
 const navbarList = [
 	{

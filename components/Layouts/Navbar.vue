@@ -19,7 +19,7 @@
 
 		<!-- Navbar: Register/Sign in -->
 		<div v-if="!authenticated" class="hidden md:flex gap-x-3 lg:gap-x-6">
-			<NuxtLink to="#" class="group relative flex px-2 items-center cursor-pointer">
+			<NuxtLink to="register" class="group relative flex px-2 items-center cursor-pointer">
 				<p>Register</p>
 				<div :class="[route.path.includes('/register') ? 'bg-native-600 w-full left-0' : 'bg-native-300 w-0 left-1/2 group-hover:w-1/2 group-hover:left-[25%]']"
 					class="absolute -bottom-0 h-0.5 bg-native-600 rounded-full transition-all duration-200 ease-in-out" />
