@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
 
-export const useTryoutStore = defineStore('auth', {
+export const useTryoutStore = defineStore('tryoutStore', {
     state: () => ({
         quizList: [],
+        currentSoal: null
     }),
 
     getters: {
         // automatically infers the return type as a number
-        currentSoal(state) {
+        getCurrentSoal(state) {
             return useRouter().currentRoute.value.params.nomorSoal
                 ? state.quizList.filter((item: any) => item.id == useRouter().currentRoute.value.params.nomorSoal)[0]
                 : {}

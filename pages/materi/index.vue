@@ -41,15 +41,14 @@
                 </div>
 
                 <div class="pt-20 grid grid-cols-5 gap-x-5 gap-y-4 flex-wrap">
-                    <div v-for="materi in data" :key="materi.id" class="flex flex-col justify-center gap-y-2.5">
-                        <UtilsMateribox :materi="materi" />
-                    </div>
+                    <UtilsMateribox v-for="materi in list_materi.data" :key="materi.id" :materi="materi" :stats="list_stats.data?.filter(stat => stat.list_materi.id == materi.id)" />
+                    <!-- {{  }} -->
                 </div>
             </div>
         </div>
     </div>
-    <pre>{{ data }}</pre>
-    {{ error }}
+    <!-- <pre>{{ list_materi.data }}</pre> -->
+    <!-- <pre>{{ list_stats.data }}</pre> -->
 </template>
 
 <script setup lang="ts">
@@ -67,15 +66,22 @@ definePageMeta({
 // const loading = ref(false)
 // const newTask = ref('')
 
-
-const { data, error } = await useSupabaseClient()
+// Fetch: List all materi
+const list_materi = await useSupabaseClient()
     .from('list_materi')
     .select('*')
 
-watchEffect(() => {
-    console.log(error)
-    console.log(data)
-})
+// Fetch Stats
+const list_stats = await useSupabaseClient()
+    .from('stats')
+    .select('id, count_soal, duration, list_quiz!inner (id, label),  list_materi!inner (id, label)', { count: 'exact' })
+
+
+// watchEffect(() => {
+//     console.log('error')
+//     console.log(list_materi)
+// })
+
 
 // async function addTask() {
 //     if (newTask.value.trim().length === 0) { return }

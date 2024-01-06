@@ -19,9 +19,9 @@
             </div>
 
             <!-- Button: Mulai Mengerjakan -->
-            <NuxtLink to="1" class="block mx-auto" external>
-                <UtilsButton @click="onClickMulaiMengerjakan(600)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
-            </NuxtLink>
+            <!-- <NuxtLink to="1" class="block mx-auto" external> -->
+            <UtilsButton @click="onClickMulaiMengerjakan(600)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
+            <!-- </NuxtLink> -->
         </div>
     </div>
 </template>
@@ -36,7 +36,29 @@ definePageMeta({
 })
 
 // const { hours, minutes, seconds, timerExpired } = storeToRefs(useTryoutTimeStore())
-const { onClickMulaiMengerjakan } = useTryoutTimeStore()
+// const { onClickMulaiMengerjakan } = useTryoutTimeStore()
+
+
+const onClickMulaiMengerjakan = async (duration: number) => {
+    // const { data, error } = await useSupabaseClient()
+    //     .from('on_tryout')
+    //     .insert(
+    //         { 
+    //             email: useSupabaseUser()?.value.email,
+    //             time_start: new Date(),
+    //             materi_name: useRouter().currentRoute.value.params.materiName,
+    //             quiz_name: useRouter().currentRoute.value.params.quizName,
+    //             duration: 600
+    //         }
+    //     ).select()
+    
+    // console.log("xxx", data, error)
+    // if(data) useRouter().push(`1`)  // ke soal nomor 1
+
+
+    useRouter().push(`1`)
+            
+}
 
 const quizId = ref('')
 const petunjukQuiz = [

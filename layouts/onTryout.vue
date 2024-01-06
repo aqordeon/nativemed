@@ -8,7 +8,7 @@
                 <template #breadcrumbs>
                     <div class="capitalize">
                         <template v-for="(params, key) in useRouter().currentRoute.value.params" :key="key">
-                            <span>{{ params.replace("_", " ") }}</span>
+                            <span>{{ params.replace("-", " ") }}</span>
                             <span class="last:hidden"> / </span>
                         </template>
                     </div>
@@ -20,7 +20,7 @@
                 <!-- Section: Top of soal (Lihat Jawaban Saya, Kumpulkan Quiz ) -->
                 <div class="flex gap-x-2.5 items-center">
                     <div class="bg-white rounded-md text-gray-600 px-5 py-[5px] flex justify-between items-center w-full">
-                        <div class="text-stone-900 text-sm font-bold leading-tight">Soal {{currentSoal.id}}</div>
+                        <div class="text-stone-700 text-sm font-bold leading-tight">Soal {{currentSoal.id}}</div>
                         <!-- <div class="bg-native-100 py-[5px] px-5 rounded-full flex gap-x-5 ">
                             <div class="text-stone-900 text-sm font-medium leading-tight">1 / 50</div>
                             <span>
@@ -78,7 +78,9 @@
                     <NuxtLink @click="currentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
                         <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
                     </NuxtLink>
-                    <UtilsButton @click="currentSoal.action = 'answered'" :to="`${nomorSoal + 1}`" theme="amber">Soal setelahnya ➡️</UtilsButton>
+                    <NuxtLink @click="currentSoal.action = 'answered'" :to="`${nomorSoal + 1}`">
+                        <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
+                    </NuxtLink>
                     <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
                     <!-- <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div> -->
                 </div>
@@ -115,13 +117,24 @@ import { useTryoutStore } from '~/store/tryoutStore'
 import { useTryoutTimeStore } from '~/store/onTryout'
 const { onStartTryout } = useTryoutTimeStore()
 
-console.log(useCookie('isOnTryout').value)
-if(useCookie('isOnTryout').value){
-    useCookie('isOnTryout').value !== true ? useRouter().push(`petunjukpengerjaan`) : ''
-}
+const { quizList, currentSoal } = storeToRefs(useTryoutStore())
 
-const { data } = await useFetch('/api/quiz_trial') // fetch data Quiz
-const { materiName, quizList, currentSoal } = storeToRefs(useTryoutStore())
+const { data: bank_soal, error } = await useSupabaseClient()
+    .from('bank_soal')
+    .select(`
+        id, soal, options, jawaban,
+        list_materi (slug),
+        list_quiz (slug)
+    `)
+    .eq('list_materi.slug', useRouter().currentRoute.value.params.materiName)
+    .eq('list_quiz.slug', useRouter().currentRoute.value.params.quizName)
+
+// console.log(useCookie('isOnTryout').value)
+// if(useCookie('isOnTryout').value){
+//     useCookie('isOnTryout').value !== true ? useRouter().push(`petunjukpengerjaan`) : ''
+// }
+
+// const { data } = await useFetch('/api/quiz_trial') // fetch data Quiz
 
 const nomorSoal = computed(() => {
     return ~~(useRouter().currentRoute.value.params.nomorSoal)
@@ -131,8 +144,7 @@ const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
 watchEffect(() => {
-    console.log(data.value)
-    quizList.value = data?.value.quizTrial // Save the quiz list to Pinia after fetch
+    quizList.value = bank_soal // Save the quiz list to Pinia after fetch
     // if(!quizList.value || !materiName.value || !currentSoal.value) useRouter().push('petunjukpengerjaan')
 })
 
