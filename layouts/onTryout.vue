@@ -5,14 +5,14 @@
                 <TryoutHeaderTryout :timer="true" :breadcrumbs="['Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal']"
                     :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"
                 >
-                <template #breadcrumbs>
-                    <div class="capitalize">
-                        <template v-for="(params, key) in useRouter().currentRoute.value.params" :key="key">
-                            <span>{{ params.replace("-", " ") }}</span>
-                            <span class="last:hidden"> / </span>
-                        </template>
-                    </div>
-                </template>
+                    <template #breadcrumbs>
+                        <div class="capitalize">
+                            <template v-for="(params, key) in useRouter().currentRoute.value.params" :key="key">
+                                <span>{{ params.replaceAll("-", " ") }}</span>
+                                <span class="last:hidden"> / </span>
+                            </template>
+                        </div>
+                    </template>
                 </TryoutHeaderTryout>
             </div>
 
@@ -58,7 +58,7 @@
                                                 : typeof soal.selectedAnswer == 'number'
                                                     ? 'bg-native-200 hover:bg-native-300' // If not currentSoal and answered
                                                     : 'bg-white hover:bg-native-100 border border-gray-200',
-                                            {'text-gray-300': soal.action == 'answered'},
+                                            // {'text-gray-300': soal.action == 'answered'},
                                     ]">
                                         <span>{{ index + 1 }}.</span>
                                         <p class="truncate whitespace-nowrap">{{ soal.soal }}</p>
@@ -71,16 +71,23 @@
                 </div>
 
                 <!-- Button: soal sebelumnya, ragu-ragu, soal setelahnya -->
-                <div class="flex justify-around">
-                    <NuxtLink :to="`${nomorSoal - 1}`">
-                        <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
-                    </NuxtLink>
-                    <NuxtLink @click="useTryoutStore().getCurrentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
+                <div class="grid grid-cols-3 justify-items-center">
+                    <div class="flex w-full">
+                        <NuxtLink v-if="nomorSoal > 1" :to="`${nomorSoal - 1}`" class="justify-self-end">
+                            <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
+                        </NuxtLink>
+                    </div>
+                    <div>
+
+                    </div>
+                    <!-- <NuxtLink @click="useTryoutStore().getCurrentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
                         <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
-                    </NuxtLink>
-                    <NuxtLink @click="useTryoutStore().getCurrentSoal.action = 'answered'" :to="`${nomorSoal + 1}`">
-                        <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
-                    </NuxtLink>
+                    </NuxtLink> -->
+                    <div class="flex w-full justify-end">
+                        <NuxtLink v-if="nomorSoal != useTryoutStore().quizList.length" :to="`${nomorSoal + 1}`" class="justify-self-start">
+                            <UtilsButton theme="secondary">Soal setelahnya ➡️</UtilsButton>
+                        </NuxtLink>
+                    </div>
                     <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
                     <!-- <div class="bg-amber-500 w-fit px-7 py-5 rounded-md text-sm">Soal setelahnya ➡️</div> -->
                 </div>
@@ -95,7 +102,8 @@
                     <XMarkIcon @click="isModalKumpulkanQuiz = false"
                         class="text-gray-500 hover:text-gray-700 cursor-pointer absolute w-5 h-5 right-0 top-0 translate-x-1/2 -translate-y-1/2" />
                     <div class="w-[80%] mx-auto text-center font-medium">
-                        Apakah Anda yakin untuk mengumpulkan quiz yang sedang Anda kerjakan?
+                        Apakah Anda yakin untuk mengumpulkan quiz yang sedang Anda kerjakan? <br>
+                        <span v-if="useTryoutStore().compSoalTidakDijawab" class="text-red-500">Masih ada {{ useTryoutStore().compSoalTidakDijawab }} soal belum dijawab.</span>
                     </div>
                     <img class="h-52 my-5 aspect-auto mx-auto" src="@imgs/ill_warning.png" />
                     <div class="relative flex justify-center items-center gap-x-2.5">
