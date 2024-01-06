@@ -15,16 +15,16 @@
                 </div> -->
                 <div class="flex flex-col shadow items-center gap-y-2.5 py-2.5  px-10 bg-native-100 border border-native-400 rounded-md">
                     <span class="text-native-600">Terjawab</span>
-                    <span>{{countAnswered ?? 0}}/{{ quizList.length }}</span>
+                    <span>{{ useTryoutStore().countAnswered }}/{{ useTryoutStore().quizList.length }}</span>
                 </div>
             </div>
             <div class="grid grid-cols-10 gap-x-2.5 gap-y-5">
-                <NuxtLink :to="`${index+1}`" v-for="(soal, index) in quizList" :key="index"
+                <NuxtLink :to="`${index+1}`" v-for="(soal, index) in useTryoutStore().quizList" :key="index"
                     class="text-gray-700 flex items-center justify-center cursor-pointer rounded-md h-12 aspect-square shadow focus:ring-offset-2 focus:ring-2 focus:ring-native-600"
                     :class="[
-                    currentSoal.id == index+1
+                        useTryoutStore().getCurrentSoal.id == index+1
                         ? 'bg-native-600 text-white border border-native-700'
-                        : soal.selectedAnswer !== false
+                        : typeof soal.selectedAnswer == 'number'
                             ? 'bg-native-300  border border-native-400'
                                 : 'bg-white hover:bg-native-300 border border-gray-200'    
                     ]"
@@ -38,9 +38,9 @@
 
 <script setup lang="ts">
 import { XMarkIcon } from '@heroicons/vue/24/solid'
-import { storeToRefs } from "pinia"
+// import { storeToRefs } from "pinia"
 import { useTryoutStore } from '~/store/tryoutStore'
-const { quizList, currentSoal, countAnswered } = storeToRefs(useTryoutStore())
+// const { quizList, currentSoal, countAnswered } = storeToRefs(useTryoutStore())
 
 const props = defineProps<{
     modelValue: boolean  // Open/close modal

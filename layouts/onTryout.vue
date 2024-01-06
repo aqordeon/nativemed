@@ -106,6 +106,7 @@
                     </div>
                 </div>
             </UtilsModal>
+        {{ useTryoutStore().quizList }}
         </div>
 	</div>
 </template>
