@@ -22,11 +22,11 @@
                 <NuxtLink :to="`${index+1}`" v-for="(soal, index) in useTryoutStore().quizList" :key="index"
                     class="text-gray-700 flex items-center justify-center cursor-pointer rounded-md h-12 aspect-square shadow focus:ring-offset-2 focus:ring-2 focus:ring-native-600"
                     :class="[
-                        useTryoutStore().getCurrentSoal.id == index+1
+                        useTryoutStore().getCurrentSoal.id == soal.id
                         ? 'bg-native-600 text-white border border-native-700'
                         : typeof soal.selectedAnswer == 'number'
                             ? 'bg-native-300  border border-native-400'
-                                : 'bg-white hover:bg-native-300 border border-gray-200'    
+                                : 'bg-white hover:bg-native-100 border border-gray-200'    
                     ]"
                 >
                     {{ index+1 }}
@@ -51,5 +51,3 @@ const emits = defineEmits<{
 }>()
 
 </script>
-
-<style scoped></style>

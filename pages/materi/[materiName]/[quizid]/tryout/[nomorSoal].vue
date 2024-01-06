@@ -1,6 +1,6 @@
 <template>
-    <div class="h-full relative bg-native-50 py-4 rounded-md col-span-7">
-        <div class="absolute px-6 h-[95%] overflow-y-auto w-full">
+    <div class="h-full relative bg-native-50 rounded-md col-span-7">
+        <div class="absolute px-6 h-full overflow-y-auto w-full py-4">
             <p class="text-stone-900 text-sm font-normal mb-6">
                 {{ useTryoutStore().getCurrentSoal?.soal }}
             </p>

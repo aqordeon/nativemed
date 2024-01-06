@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </UtilsModal>
-        {{ useTryoutStore().quizList }}
+        <!-- {{ useTryoutStore().quizList }} -->
         </div>
 	</div>
 </template>

@@ -3,8 +3,8 @@
         <template v-if="useTryoutStore().getCurrentSoal?.options">
             <li v-for="(option, index) in useTryoutStore().getCurrentSoal.options" :key="index"
                 @click="useTryoutStore().getCurrentSoal.selectedAnswer = index"
-                class="group text-sm cursor-pointer flex rounded-md py-2.5 px-5 gap-x-6"
-                :class="[useTryoutStore().getCurrentSoal.selectedAnswer === index ? 'bg-native-600 text-white' : 'bg-white hover:bg-indigo-200 hover:text-gray-700 ']"
+                class="border border-native-200 group text-sm cursor-pointer flex rounded-md py-2.5 px-5 gap-x-6"
+                :class="[useTryoutStore().getCurrentSoal.selectedAnswer === index ? 'bg-native-600 text-white' : 'bg-white hover:bg-indigo-100 hover:text-gray-700 ']"
             >
                 <div class="w-8">
                     <span class="h-8 aspect-square flex items-center justify-center rounded-full border-2 leading-none"
