@@ -20,7 +20,7 @@
                 <!-- Section: Top of soal (Lihat Jawaban Saya, Kumpulkan Quiz ) -->
                 <div class="flex gap-x-2.5 items-center">
                     <div class="bg-white rounded-md text-gray-600 px-5 py-[5px] flex justify-between items-center w-full">
-                        <div class="text-stone-700 text-sm font-bold leading-tight">Soal {{currentSoal.id}}</div>
+                        <div class="text-stone-700 text-sm font-bold leading-tight">Soal {{ useRouter().currentRoute.value.params.nomorSoal }}</div>
                         <!-- <div class="bg-native-100 py-[5px] px-5 rounded-full flex gap-x-5 ">
                             <div class="text-stone-900 text-sm font-medium leading-tight">1 / 50</div>
                             <span>
@@ -50,19 +50,19 @@
                         <div class="h-[90%] relative overflow-y-auto flex flex-col gap-y-2.5 w-full">
                             <div class="absolute w-full h-full space-y-2.5">
                                 <!-- Box: List Soal -->
-                                <template v-if="quizList">
-                                    <NuxtLink :to="`${index + 1}`" v-for="(soal, index) in quizList" :key="index"
+                                <template v-if="useTryoutStore().quizList">
+                                    <NuxtLink v-for="(soal, index) in useTryoutStore().quizList" :to="`${index + 1}`" :key="index"
                                         class="relative shadow text-xs flex items-center rounded-md gap-x-2.5 py-2 pl-5 pr-9 cursor-pointer" :class="[
                                             index + 1 == nomorSoal
                                                 ? 'bg-native-600 hover:bg-native-700 text-white' // If CurrentSoal
-                                                : soal.selectedAnswer !== false
+                                                : typeof soal.selectedAnswer == 'number'
                                                     ? 'bg-native-200 hover:bg-native-300' // If not currentSoal and answered
                                                     : 'bg-white hover:bg-native-100 border border-gray-200',
                                             {'text-gray-300': soal.action == 'answered'},
                                     ]">
                                         <span>{{ index + 1 }}.</span>
-                                        <p class="truncate whitespace-nowrap">{{ soal.question }}</p>
-                                        <CheckCircleIcon v-if="soal.selectedAnswer !== false" class="absolute right-4 h-5 w-5 text-green-400" />
+                                        <p class="truncate whitespace-nowrap">{{ soal.soal }}</p>
+                                        <CheckCircleIcon v-if="typeof soal.selectedAnswer == 'number'" class="absolute right-4 h-5 w-5 text-green-400" />
                                     </NuxtLink>
                                 </template>
                             </div>
@@ -75,10 +75,10 @@
                     <NuxtLink :to="`${nomorSoal - 1}`">
                         <UtilsButton theme="secondary">⬅️ Soal sebelumnya</UtilsButton>
                     </NuxtLink>
-                    <NuxtLink @click="currentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
+                    <NuxtLink @click="useTryoutStore().getCurrentSoal.action = 'ragu'" :to="`${nomorSoal + 1}`">
                         <UtilsButton theme="secondary">Ragu-ragu</UtilsButton>
                     </NuxtLink>
-                    <NuxtLink @click="currentSoal.action = 'answered'" :to="`${nomorSoal + 1}`">
+                    <NuxtLink @click="useTryoutStore().getCurrentSoal.action = 'answered'" :to="`${nomorSoal + 1}`">
                         <UtilsButton theme="amber">Soal setelahnya ➡️</UtilsButton>
                     </NuxtLink>
                     <!-- <div class="bg-white border border-native-600 w-fit px-7 py-5 rounded-md text-sm">Ragu-ragu</div> -->
@@ -112,14 +112,14 @@
 
 <script setup lang="ts">
 import { BookOpenIcon, ChevronUpDownIcon, XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
-import { storeToRefs } from "pinia"
+// import { storeToRefs } from "pinia"
 import { useTryoutStore } from '~/store/tryoutStore'
 import { useTryoutTimeStore } from '~/store/onTryout'
 const { onStartTryout } = useTryoutTimeStore()
 
-const { quizList, currentSoal } = storeToRefs(useTryoutStore())
+// const { quizList, currentSoal } = storeToRefs(useTryoutStore())
 
-const { data: bank_soal, error } = await useSupabaseClient()
+const bank_soal = await useSupabaseClient()
     .from('bank_soal')
     .select(`
         id, soal, options, jawaban,
@@ -144,8 +144,9 @@ const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
 watchEffect(() => {
-    quizList.value = bank_soal // Save the quiz list to Pinia after fetch
-    // if(!quizList.value || !materiName.value || !currentSoal.value) useRouter().push('petunjukpengerjaan')
+    // console.log('getCurrentSoal', useTryoutStore().getCurrentSoal)
+    useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
+    // if(!quizList.value || !materiName.value || !useTryoutStore().currentSoal.value) useRouter().push('petunjukpengerjaan')
 })
 
 onMounted(() => {

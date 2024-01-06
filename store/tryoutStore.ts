@@ -8,9 +8,9 @@ export const useTryoutStore = defineStore('tryoutStore', {
 
     getters: {
         // automatically infers the return type as a number
-        getCurrentSoal(state) {
+        getCurrentSoal(state): {} {
             return useRouter().currentRoute.value.params.nomorSoal
-                ? state.quizList.filter((item: any) => item.id == useRouter().currentRoute.value.params.nomorSoal)[0]
+                ? state.quizList[useRouter().currentRoute.value.params.nomorSoal-1]
                 : {}
         },
 
