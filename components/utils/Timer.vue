@@ -16,15 +16,12 @@
                 <div class="">{{ String(timeCountdown?.seconds ? timeCountdown.seconds : 0).padStart(2, '0') }}</div>
             </div>
         </div>
-        {{ timeCountdown }}
     </div>
 </template>
 
 <script setup lang="ts">
 import { useTryoutTimeStore } from '~/store/onTryout'
 import { useTryoutStore } from '~/store/tryoutStore'
-// import { storeToRefs } from 'pinia'
-// const { hours, minutes, seconds, timerExpired } = storeToRefs(useTryoutTimeStore())
 
 const timeCountdown = ref()
 
@@ -34,11 +31,10 @@ const onTryout = await useSupabaseClient()
     .eq('id_materi', useTryoutStore().currentTryout.materi.id)
     .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
 
-// const interval = setInterval(() => {
-//     console.log(onTryout.data?.[0].time_start)
-//     timeCountdown.value = useTimeCountdown(onTryout.data?.[0].time_start, {additionalSeconds: onTryout.data?.[0].duration})
-    
-// }, 1000)
+const interval = setInterval(() => {
+    // console.log(onTryout.data?.[0].time_start)
+    timeCountdown.value = useTimeCountdown(onTryout.data?.[onTryout.data.length-1].time_start, { additionalSeconds: onTryout.data?.[0].duration })
+}, 1000)
 
 
 </script>

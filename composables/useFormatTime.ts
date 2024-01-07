@@ -34,6 +34,9 @@ export const useRangeFromNow = (dateIso: string | Date, OptionsTime?: OptionsTim
 // Time countdown 1
 export const useTimeCountdown: any = (dateIso: string, options?: { human?: boolean, zero?: boolean, additionalSeconds?: number }) => {
     if (!dateIso) return '-'  // If the provided data date is null
+    // console.log('dateIso', dateIso)
+    // console.log('seconds', options?.additionalSeconds)
+    // console.log(addSeconds(new Date(dateIso), options?.additionalSeconds))
 
     if(options?.additionalSeconds){
         if(isPast(addSeconds(new Date(dateIso), options?.additionalSeconds))) return false  // If the provided date already passed then return false

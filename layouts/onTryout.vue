@@ -159,14 +159,12 @@ const nomorSoal = computed(() => {
     return ~~(useRouter().currentRoute.value.params.nomorSoal)
 })
 
-console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
-
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
 watchEffect(() => {
-    console.log('currentMateri', currentMateri.data)
-    console.log('currentQuiz', currentQuiz.data)
+    // console.log('currentMateri', currentMateri.data)
+    // console.log('currentQuiz', currentQuiz.data)
     useTryoutStore().currentTryout.materi = currentMateri.data?.[0]
     useTryoutStore().currentTryout.quiz = currentQuiz.data?.[0]
     useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
@@ -177,5 +175,3 @@ onMounted(() => {
     onStartTryout()
 })
 </script>
-
-<style scoped></style>

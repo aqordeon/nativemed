@@ -20,7 +20,7 @@
 
             <!-- Button: Mulai Mengerjakan -->
             <!-- <NuxtLink to="1" class="block mx-auto" external> -->
-            <UtilsButton v-if="useTryoutStore().currentTryout.materi?.id" @click="onClickMulaiMengerjakan(list_stats.data?.[0].duration)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
+            <UtilsButton v-if="useTryoutStore().currentTryout.materi?.id" @click="onClickMulaiMengerjakan(list_stats.data?.[list_stats.data.length-1].duration)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
             <!-- </NuxtLink> -->
         </div>
     </div>
