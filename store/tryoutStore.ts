@@ -2,6 +2,10 @@ import { defineStore } from 'pinia'
 
 export const useTryoutStore = defineStore('tryoutStore', {
     state: () => ({
+        currentTryout: {
+            materi: null,
+            quiz: null
+        },
         quizList: [],
         currentSoal: null
     }),

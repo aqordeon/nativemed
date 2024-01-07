@@ -20,7 +20,7 @@
 
             <!-- Button: Mulai Mengerjakan -->
             <!-- <NuxtLink to="1" class="block mx-auto" external> -->
-            <UtilsButton @click="onClickMulaiMengerjakan(600)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
+            <UtilsButton v-if="useTryoutStore().currentTryout.materi?.id" @click="onClickMulaiMengerjakan(list_stats.data?.[0].duration)" class="mx-auto">Mulai Mengerjakan</UtilsButton>
             <!-- </NuxtLink> -->
         </div>
     </div>
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { useTryoutTimeStore } from '~/store/onTryout'
 import { storeToRefs } from "pinia" // import storeToRefs helper hook from pinia
+import { useTryoutStore } from '~/store/tryoutStore'
 
 definePageMeta({
     layout: "tryout",
@@ -38,29 +39,33 @@ definePageMeta({
 // const { hours, minutes, seconds, timerExpired } = storeToRefs(useTryoutTimeStore())
 // const { onClickMulaiMengerjakan } = useTryoutTimeStore()
 
+// Fetch Stats
+const list_stats = await useSupabaseClient()
+    .from('stats')
+    .select('*')
+    .eq('id_materi', useTryoutStore().currentTryout.materi.id)
+    .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
 
 const onClickMulaiMengerjakan = async (duration: number) => {
-    // const { data, error } = await useSupabaseClient()
-    //     .from('on_tryout')
-    //     .insert(
-    //         { 
-    //             email: useSupabaseUser()?.value.email,
-    //             time_start: new Date(),
-    //             materi_name: useRouter().currentRoute.value.params.materiName,
-    //             quiz_name: useRouter().currentRoute.value.params.quizName,
-    //             duration: 600
-    //         }
-    //     ).select()
+    const onTryout = await useSupabaseClient()
+        .from('on_tryout')
+        .insert([
+            { 
+                email: useSupabaseUser()?.value.email,
+                time_start: new Date(),
+                id_materi: useTryoutStore().currentTryout.materi.id,
+                id_quiz: useTryoutStore().currentTryout.quiz.id,
+                duration: duration
+            }
+        ]).select()
     
     // console.log("xxx", data, error)
-    // if(data) useRouter().push(`1`)  // ke soal nomor 1
+    if(onTryout.data) useRouter().push(`1`)  // ke soal nomor 1
 
-
-    useRouter().push(`1`)
             
 }
 
-const quizId = ref('')
+// const quizId = ref('')
 const petunjukQuiz = [
     'Terdapat 50 soal dalam Quiz Penalaran Umum',
     'Pilihlah salah satu jawaban yang menurut Anda benar',
@@ -73,7 +78,7 @@ const petunjukQuiz = [
 
 onMounted(() => {
     // Access the dynamic parameter "id" from the route
-    quizId.value = useRouter().currentRoute.value.params.quizid
+    // quizId.value = useRouter().currentRoute.value.params.quizid
 })
 
 </script>

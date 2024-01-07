@@ -9,7 +9,7 @@
                 </span>
                 <slot name="title">
                     <p class="font-bold text-2xl block text-gray-600 mb-4">
-                        {{ title.replaceAll('-', ' ') }}
+                        {{ title }}
                     </p>
                 </slot>
             </slot>

@@ -3,7 +3,7 @@
         <div class="w-full h-full flex flex-col overflow-hidden bg-red-50 pb-5 pt-0 relative">
             <div class="mb-2.5">
                 <TryoutHeaderTryout :timer="true" :breadcrumbs="['Materi Lorem Ipsum / Quiz Lorem Ipsum / Pengerjaan Soal']"
-                    :title="`⬅️ Materi: ${useRouter().currentRoute.value.params.materiName}`"
+                    :title="`⬅️ Materi: ${useTryoutStore().currentTryout.materi.label}`"
                 >
                     <template #breadcrumbs>
                         <div class="capitalize">
@@ -138,6 +138,16 @@ const bank_soal = await useSupabaseClient()
     .eq('list_materi.slug', useRouter().currentRoute.value.params.materiName)
     .eq('list_quiz.slug', useRouter().currentRoute.value.params.quizName)
 
+const currentMateri = await useSupabaseClient()
+    .from('list_materi')
+    .select(`*`)
+    .eq('slug', useRouter().currentRoute.value.params.materiName)
+
+const currentQuiz = await useSupabaseClient()
+    .from('list_quiz')
+    .select(`*`)
+    .eq('slug', useRouter().currentRoute.value.params.quizName)
+
 // console.log(useCookie('isOnTryout').value)
 // if(useCookie('isOnTryout').value){
 //     useCookie('isOnTryout').value !== true ? useRouter().push(`petunjukpengerjaan`) : ''
@@ -149,11 +159,16 @@ const nomorSoal = computed(() => {
     return ~~(useRouter().currentRoute.value.params.nomorSoal)
 })
 
+console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww')
+
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
 watchEffect(() => {
-    // console.log('getCurrentSoal', useTryoutStore().getCurrentSoal)
+    console.log('currentMateri', currentMateri.data)
+    console.log('currentQuiz', currentQuiz.data)
+    useTryoutStore().currentTryout.materi = currentMateri.data?.[0]
+    useTryoutStore().currentTryout.quiz = currentQuiz.data?.[0]
     useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
     // if(!quizList.value || !materiName.value || !useTryoutStore().currentSoal.value) useRouter().push('petunjukpengerjaan')
 })
