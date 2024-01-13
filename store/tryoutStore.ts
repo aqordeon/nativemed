@@ -2,6 +2,14 @@ import { defineStore } from 'pinia'
 import { materi } from '@/types/Materi'
 import { quiz } from '@/types/Quiz'
 
+interface resultOnTryout {
+    score: number
+    jumlah_soal: number
+    jumlah_benar: number
+    jumlah_salah: number
+    jumlah_tidakdijawab: number
+}
+
 export const useTryoutStore = defineStore('tryoutStore', {
     state: () => ({
         currentTryout: {
@@ -15,16 +23,17 @@ export const useTryoutStore = defineStore('tryoutStore', {
             id_materi: null as number | null,
             id_quiz: null as number | null,
             time_start: null as Date | null,
+            is_finish: false as boolean,
             duration: null as number | null,
-            is_finish: false as boolean
+            result: {} as resultOnTryout,
         },
     }),
 
     getters: {
         // automatically infers the return type as a number
-        getCurrentSoal(state): {} {
+        getCurrentSoal(state): quiz {
             return useRouter().currentRoute.value.params.nomorSoal
-                ? state.quizList[useRouter().currentRoute.value.params.nomorSoal-1]
+                ? state.quizList[useRouter().currentRoute.value.params.nomorSoal - 1]
                 : {}
         },
 
@@ -32,25 +41,25 @@ export const useTryoutStore = defineStore('tryoutStore', {
             return useRouter().currentRoute.value.params.materiName ?? ''
         },
 
-        countAnswered(state): number{
+        countAnswered(state): number {
             return state.quizList.filter(quiz => typeof quiz.selectedAnswer == 'number').length
         },
-        
+
         compFinalResult(state): number {
-            return this.compSoalBenar/state.quizList.length * 100
+            return this.compSoalBenar / state.quizList.length * 100
         },
-        
+
         compSoalBenar(state): number {
             return state.quizList.filter(quiz => quiz.jawaban === quiz.selectedAnswer).length
         },
-        
+
         compSoalSalah(state): number {
             return state.quizList.filter(quiz => quiz.jawaban !== quiz.selectedAnswer).length
         },
-        
+
         compSoalTidakDijawab(state): number {
             return state.quizList.filter(quiz => quiz.selectedAnswer === false).length
         },
-        
+
     }
 });

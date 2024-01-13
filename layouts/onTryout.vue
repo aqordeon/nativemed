@@ -193,9 +193,7 @@ watchEffect(async () => {
     // console.log('currentQuiz', currentQuiz.data)
     useTryoutStore().currentTryout.materi = currentMateri.data?.[0]
     useTryoutStore().currentTryout.quiz = currentQuiz.data?.[0]
-    useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
     // if(!quizList.value || !materiName.value || !useTryoutStore().currentSoal.value) useRouter().push('petunjukpengerjaan')
-
     const onTryout = await useSupabaseClient()
         .from('on_tryout')
         .select(`*`)
@@ -204,12 +202,21 @@ watchEffect(async () => {
 
     if(!useTryoutStore().on_tryout?.id && onTryout.data){
         useTryoutStore().on_tryout = onTryout.data[onTryout.data.length-1]
+
+        if(onTryout.data[onTryout.data.length-1].live_answer){
+            // If the user has answered the quiz, then save the answer to Pinia (to make it safe on Refresh page)
+            useTryoutStore().quizList = onTryout.data[onTryout.data.length-1].live_answer
+        } else {
+            // If the user hasn't answered the quiz, then fetch the quiz from database
+            useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
+        }
     }
 
     if(useTryoutStore().on_tryout.is_finish){
         // console.log('hasil akhir')
         useRouter().push('hasilakhir')
     }
+
 })
 
 onMounted(() => {
