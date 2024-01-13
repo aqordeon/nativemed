@@ -38,6 +38,7 @@
         <div class="mx-auto w-fit">
             <UtilsButton label="📃Pembahasan" class=""></UtilsButton>
         </div>
+        <!-- <pre>{{ useTryoutStore().quizList.filter(quiz => quiz.correctAnswer === quiz.selectedAnswer) }}</pre> -->
     </div>
 </template>
 

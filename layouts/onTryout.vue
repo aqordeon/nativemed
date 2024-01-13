@@ -108,9 +108,9 @@
                     <img class="h-52 my-5 aspect-auto mx-auto" src="@imgs/ill_warning.png" />
                     <div class="relative flex justify-center items-center gap-x-2.5">
                         <UtilsButton @click="isModalKumpulkanQuiz = false" theme="secondary" label="Kembali" />
-                        <NuxtLink to="hasilakhir">
-                            <UtilsButton theme="primary" label="Yakin" />
-                        </NuxtLink>
+                        <UtilsButton @click="onSubmitTryout" theme="primary" label="Yakin" />
+                        
+                        
                     </div>
                 </div>
             </UtilsModal>
@@ -162,13 +162,54 @@ const nomorSoal = computed(() => {
 const isModalJawabanOpen = ref(false)
 const isModalKumpulkanQuiz = ref(false)
 
+const onSubmitTryout = async () => {
+    const dataOnTryout = await useSupabaseClient()
+        .from('on_tryout')
+        .update({ is_finish: true })
+        .eq('id', useTryoutStore().on_tryout.id)
+        .select()
+        
+    if(dataOnTryout.data) {
+        useTryoutStore().on_tryout.is_finish = true
+    }
+
+    if(dataOnTryout.error) {
+        console.log('Error fetch on tryout', dataOnTryout.error)
+    }
+    
+    
+            
+}
+
+// Fetch on_tryout: get the is_finish
+
+
 watchEffect(() => {
+    
+})
+
+watchEffect(async () => {
     // console.log('currentMateri', currentMateri.data)
     // console.log('currentQuiz', currentQuiz.data)
     useTryoutStore().currentTryout.materi = currentMateri.data?.[0]
     useTryoutStore().currentTryout.quiz = currentQuiz.data?.[0]
     useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
     // if(!quizList.value || !materiName.value || !useTryoutStore().currentSoal.value) useRouter().push('petunjukpengerjaan')
+
+    const onTryout = await useSupabaseClient()
+        .from('on_tryout')
+        .select(`*`)
+        .eq('id_materi', useTryoutStore().currentTryout.materi.id)
+        .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
+
+    if(!useTryoutStore().on_tryout?.id && onTryout.data){
+        useTryoutStore().on_tryout = onTryout.data[onTryout.data.length-1]
+    }
+
+    if(useTryoutStore().on_tryout.is_finish){
+        // console.log('hasil akhir')
+        useRouter().push('hasilakhir')
+    }
 })
 
 onMounted(() => {

@@ -23,17 +23,15 @@
 import { useTryoutTimeStore } from '~/store/onTryout'
 import { useTryoutStore } from '~/store/tryoutStore'
 
-const timeCountdown = ref()
+const timeCountdown = ref(true)
 
-const onTryout = await useSupabaseClient()
-    .from('on_tryout')
-    .select(`*`)
-    .eq('id_materi', useTryoutStore().currentTryout.materi.id)
-    .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
 
 const interval = setInterval(() => {
-    timeCountdown.value = useTimeCountdown(onTryout.data?.[onTryout.data.length-1].time_start, { additionalSeconds: onTryout.data?.[onTryout.data.length-1].duration })
+    timeCountdown.value = useTimeCountdown(useTryoutStore().on_tryout.time_start, { additionalSeconds: useTryoutStore().on_tryout.duration })
+    if(!timeCountdown.value){
+        useTryoutStore().on_tryout.is_finish = true
+        useRouter().push('hasilakhir')
+    }
 }, 1000)
-
 
 </script>
