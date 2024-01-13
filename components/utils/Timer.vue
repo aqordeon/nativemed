@@ -32,8 +32,7 @@ const onTryout = await useSupabaseClient()
     .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
 
 const interval = setInterval(() => {
-    // console.log(onTryout.data?.[0].time_start)
-    timeCountdown.value = useTimeCountdown(onTryout.data?.[onTryout.data.length-1].time_start, { additionalSeconds: onTryout.data?.[0].duration })
+    timeCountdown.value = useTimeCountdown(onTryout.data?.[onTryout.data.length-1].time_start, { additionalSeconds: onTryout.data?.[onTryout.data.length-1].duration })
 }, 1000)
 
 
