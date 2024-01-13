@@ -45,12 +45,8 @@ export const useTryoutStore = defineStore('tryoutStore', {
             return state.quizList.filter(quiz => typeof quiz.selectedAnswer == 'number').length
         },
 
-        compFinalResult(state): number {
-            return this.compSoalBenar / state.quizList.length * 100
-        },
-
         compSoalBenar(state): number {
-            return state.quizList.filter(quiz => quiz.jawaban === quiz.selectedAnswer).length
+            return state.quizList.filter(quiz => quiz.jawaban === quiz.selectedAnswer).length ?? 0
         },
 
         compSoalSalah(state): number {
@@ -59,6 +55,10 @@ export const useTryoutStore = defineStore('tryoutStore', {
 
         compSoalTidakDijawab(state): number {
             return state.quizList.filter(quiz => quiz.selectedAnswer === false).length
+        },
+
+        compScore(state): number {
+            return this.compSoalBenar / state.quizList.length * 100
         },
 
     }

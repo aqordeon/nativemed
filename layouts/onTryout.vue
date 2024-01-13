@@ -165,11 +165,21 @@ const isModalKumpulkanQuiz = ref(false)
 const onSubmitTryout = async () => {
     const dataOnTryout = await useSupabaseClient()
         .from('on_tryout')
-        .update({ is_finish: true })
+        .update({
+            is_finish: true,
+            result: {
+                "score": useTryoutStore().compScore,
+                "jumlah_soal": useTryoutStore().quizList.length,
+                "jumlah_benar": useTryoutStore().compSoalBenar,
+                "jumlah_salah": useTryoutStore().compSoalSalah,
+                "jumlah_tidakdijawab": useTryoutStore().compSoalTidakDijawab,
+            }
+        })
         .eq('id', useTryoutStore().on_tryout.id)
         .select()
         
     if(dataOnTryout.data) {
+        useRouter().push('hasilakhir')
         useTryoutStore().on_tryout.is_finish = true
     }
 
