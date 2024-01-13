@@ -14,7 +14,6 @@
                 <p class="leading-none flex items-center">{{ option }}</p>
             </li>
         </template>
-        {{ useTryoutStore().quizList }}
     </ol>
 </template>
 

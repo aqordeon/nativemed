@@ -54,7 +54,7 @@ export const useTryoutStore = defineStore('tryoutStore', {
         },
 
         compSoalTidakDijawab(state): number {
-            return state.quizList.filter(quiz => quiz.selectedAnswer === false).length
+            return state.quizList.length - state.quizList.filter(quiz => quiz.selectedAnswer).length
         },
 
         compScore(state): number {

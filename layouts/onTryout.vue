@@ -186,17 +186,7 @@ const onSubmitTryout = async () => {
     if(dataOnTryout.error) {
         console.log('Error fetch on tryout', dataOnTryout.error)
     }
-    
-    
-            
 }
-
-// Fetch on_tryout: get the is_finish
-
-
-watchEffect(() => {
-    
-})
 
 watchEffect(async () => {
     // console.log('currentMateri', currentMateri.data)
@@ -209,13 +199,15 @@ watchEffect(async () => {
         .select(`*`)
         .eq('id_materi', useTryoutStore().currentTryout.materi.id)
         .eq('id_quiz', useTryoutStore().currentTryout.quiz.id)
+        .order('id', { ascending: false })
+        .limit(1)
 
     if(!useTryoutStore().on_tryout?.id && onTryout.data){
-        useTryoutStore().on_tryout = onTryout.data[onTryout.data.length-1]
+        useTryoutStore().on_tryout = onTryout.data[0]
 
-        if(onTryout.data[onTryout.data.length-1].live_answer){
+        if(onTryout.data[0]?.live_answer){
             // If the user has answered the quiz, then save the answer to Pinia (to make it safe on Refresh page)
-            useTryoutStore().quizList = onTryout.data[onTryout.data.length-1].live_answer
+            useTryoutStore().quizList = onTryout.data[0].live_answer
         } else {
             // If the user hasn't answered the quiz, then fetch the quiz from database
             useTryoutStore().quizList = bank_soal.data // Save the quiz list to Pinia after fetch
@@ -223,7 +215,6 @@ watchEffect(async () => {
     }
 
     if(useTryoutStore().on_tryout.is_finish){
-        // console.log('hasil akhir')
         useRouter().push('hasilakhir')
     }
 
